@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="-rILxxxxx7gbfxxxxx-E1VWxxxxxTcq6pxgs_xxxxx">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="keras,二分类,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="问题描述要解决的是一个医学图像的二分类问题，有AK和SK两种病症，根据一定量数据，进行训练，对图像进行预测。 给定图片数据的格式：  解决思路整体上采用迁移学习来训练神经网络，使用InceptionV3结构，框架采用keras. 具体思路：  读取图片数据，保存成.npy格式，方便后续加载 标签采用one-hot形式，由于标签隐藏在文件夹命名中，所以需要自行添加标签，并保存到.npy文件中，方便后">
+<meta name="keywords" content="keras,二分类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="keras使用迁移学习实现二分类问题">
+<meta property="og:url" content="https://macrozhang.github.io/2019/05/07/keras_binary_classification/index.html">
+<meta property="og:site_name" content="Macro">
+<meta property="og:description" content="问题描述要解决的是一个医学图像的二分类问题，有AK和SK两种病症，根据一定量数据，进行训练，对图像进行预测。 给定图片数据的格式：  解决思路整体上采用迁移学习来训练神经网络，使用InceptionV3结构，框架采用keras. 具体思路：  读取图片数据，保存成.npy格式，方便后续加载 标签采用one-hot形式，由于标签隐藏在文件夹命名中，所以需要自行添加标签，并保存到.npy文件中，方便后">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819eagy1g3hceviwbvj20ab0eqgm5.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819eagy1g2sv3ux8klj20uq0fgmyf.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819eagy1g2svdxnpamj217v0fbjso.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819eagy1g2svg4hlb4j20lq07i748.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819eagy1g2svk9htyij20di07eaa8.jpg">
+<meta property="og:updated_time" content="2019-05-28T13:18:46.199Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="keras使用迁移学习实现二分类问题">
+<meta name="twitter:description" content="问题描述要解决的是一个医学图像的二分类问题，有AK和SK两种病症，根据一定量数据，进行训练，对图像进行预测。 给定图片数据的格式：  解决思路整体上采用迁移学习来训练神经网络，使用InceptionV3结构，框架采用keras. 具体思路：  读取图片数据，保存成.npy格式，方便后续加载 标签采用one-hot形式，由于标签隐藏在文件夹命名中，所以需要自行添加标签，并保存到.npy文件中，方便后">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/e52819eagy1g3hceviwbvj20ab0eqgm5.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://macrozhang.github.io/2019/05/07/keras_binary_classification/">
+
+
+<meta name="google-site-verification" content="UEyEKq1HPEEwvXN8IKUs4MWiU4oNmSsZ49YysJ45u7M">
+
+
+
+  <title>keras使用迁移学习实现二分类问题 | Macro</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Macro</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://macrozhang.github.io/2019/05/07/keras_binary_classification/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Macro">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Macro">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">keras使用迁移学习实现二分类问题</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-07T16:32:08+08:00">
+                2019-05-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ML-DL/" itemprop="url" rel="index">
+                    <span itemprop="name">ML/DL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h3><p>要解决的是一个医学图像的二分类问题，有<code>AK</code>和<code>SK</code>两种病症，根据一定量数据，进行训练，对图像进行预测。</p>
+<p><strong>给定图片数据的格式：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819eagy1g3hceviwbvj20ab0eqgm5.jpg" alt=""></p>
+<h3 id="解决思路"><a href="#解决思路" class="headerlink" title="解决思路"></a>解决思路</h3><p>整体上采用迁移学习来训练神经网络，使用InceptionV3结构，框架采用keras.</p>
+<p><strong>具体思路：</strong></p>
+<ol>
+<li>读取图片数据，保存成<code>.npy</code>格式，方便后续加载</li>
+<li>标签采用one-hot形式，由于标签隐藏在文件夹命名中，所以需要自行添加标签，并保存到<code>.npy</code>文件中，方便后续加载</li>
+<li>将数据分为训练集、验证集、测试集</li>
+<li>使用keras建立InceptionV3基本模型，不包括顶层，使用预训练权重，在基本模型的基础上自定义几层神经网络，得到最后的模型，对模型进行训练</li>
+<li>优化模型，调整超参数，提高准确率</li>
+<li>在测试集上对模型进行评估，使用精确率、召回率</li>
+<li>对单张图片进行预测，并输出每种类别的概率</li>
+</ol>
+<h3 id="代码结构"><a href="#代码结构" class="headerlink" title="代码结构"></a>代码结构</h3><p><img src="http://ww1.sinaimg.cn/large/e52819eagy1g2sv3ux8klj20uq0fgmyf.jpg" alt=""></p>
+<h3 id="具体代码"><a href="#具体代码" class="headerlink" title="具体代码"></a>具体代码</h3><p><strong>1. path.py ==&gt; 定义项目根路径</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> inspect</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mkdir_if_not_exist</span><span class="params">(dir_list)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> directory <span class="keyword">in</span> dir_list:</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> os.path.exists(directory):</span><br><span class="line">            os.makedirs(directory)</span><br><span class="line"></span><br><span class="line">curr_filename = inspect.getfile(inspect.currentframe())</span><br><span class="line">root_dir = os.path.dirname(os.path.abspath(curr_filename))</span><br></pre></td></tr></table></figure>
+<p><strong>2. load_datasets.py ==&gt; 读取原始数据，生成.npy文件</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> skimage <span class="keyword">import</span> io</span><br><span class="line"><span class="keyword">from</span> skimage <span class="keyword">import</span> transform</span><br><span class="line"><span class="keyword">from</span> tqdm <span class="keyword">import</span> tqdm</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> paths <span class="keyword">import</span> root_dir, mkdir_if_not_exist</span><br><span class="line"><span class="keyword">from</span> sklearn.utils <span class="keyword">import</span> shuffle</span><br><span class="line"></span><br><span class="line">origin_data_dir = os.path.join(root_dir, <span class="string">'origin_data'</span>)</span><br><span class="line">data_dir = os.path.join(root_dir, <span class="string">'data'</span>)</span><br><span class="line">mkdir_if_not_exist(dir_list=[data_dir])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">process_datasets</span><span class="params">()</span>:</span></span><br><span class="line">    images = []</span><br><span class="line">    labels = []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> AK_or_SK_dir <span class="keyword">in</span> tqdm(os.listdir(origin_data_dir)):</span><br><span class="line">        <span class="comment"># AK ==&gt; [1, 0]   SK ==&gt; [0, 1]</span></span><br><span class="line">        <span class="keyword">if</span> <span class="string">'AK'</span> <span class="keyword">in</span> AK_or_SK_dir:</span><br><span class="line">            label = [<span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">        <span class="keyword">elif</span> <span class="string">'SK'</span> <span class="keyword">in</span> AK_or_SK_dir:</span><br><span class="line">            label = [<span class="number">0</span>, <span class="number">1</span>]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            print(<span class="string">"AK_or_SK_dir error"</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> person_dir <span class="keyword">in</span> tqdm(os.listdir(os.path.join(origin_data_dir, AK_or_SK_dir))):</span><br><span class="line">            <span class="keyword">for</span> fname <span class="keyword">in</span> os.listdir(os.path.join(origin_data_dir, AK_or_SK_dir, person_dir)):</span><br><span class="line">                img_fname = os.path.join(origin_data_dir, AK_or_SK_dir,</span><br><span class="line">                                         person_dir, fname)</span><br><span class="line">                image = io.imread(img_fname)</span><br><span class="line">                image = transform.resize(image, (<span class="number">224</span>, <span class="number">224</span>),</span><br><span class="line">                                         order=<span class="number">1</span>, mode=<span class="string">'constant'</span>,</span><br><span class="line">                                         cval=<span class="number">0</span>, clip=<span class="keyword">True</span>,</span><br><span class="line">                                         preserve_range=<span class="keyword">True</span>,</span><br><span class="line">                                         anti_aliasing=<span class="keyword">True</span>)</span><br><span class="line">                image = image.astype(np.uint8)</span><br><span class="line"></span><br><span class="line">                images.append(image)</span><br><span class="line">                labels.append(label)</span><br><span class="line"></span><br><span class="line">    images = np.stack(images).astype(np.uint8)</span><br><span class="line">    labels = np.stack(labels, axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> images, labels</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_datasets</span><span class="params">()</span>:</span></span><br><span class="line">    images_npy_filename = os.path.join(data_dir, <span class="string">'images_data.npy'</span>)</span><br><span class="line">    labels_npy_filename = os.path.join(data_dir, <span class="string">'labels.npy'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> os.path.exists(images_npy_filename) <span class="keyword">and</span> os.path.exists(labels_npy_filename):</span><br><span class="line">        images = np.load(images_npy_filename)</span><br><span class="line">        labels = np.load(labels_npy_filename)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        images, labels = process_datasets()</span><br><span class="line">        <span class="comment"># 将数据打乱后保存</span></span><br><span class="line">        images, labels = shuffle(images, labels)</span><br><span class="line">        np.save(images_npy_filename, images)</span><br><span class="line">        np.save(labels_npy_filename, labels)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> images, labels</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    X, y = load_datasets()</span><br><span class="line">    print(X.shape,y.shape)</span><br><span class="line">    <span class="comment"># plt.imshow(X[5])</span></span><br><span class="line">    <span class="comment"># plt.show()</span></span><br><span class="line">    y = np.argmax(y, axis=<span class="number">1</span>)</span><br><span class="line">    print(y[:<span class="number">20</span>])</span><br><span class="line">    count_SK = np.count_nonzero(y)</span><br><span class="line">    print(<span class="string">"SK图片数量："</span>, count_SK)</span><br></pre></td></tr></table></figure>
+<p><strong>3. load_train_test_data.py ==&gt; 划分训练集、验证集、测试集</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> StratifiedKFold</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> load_datesets <span class="keyword">import</span> load_datasets</span><br><span class="line"></span><br><span class="line">X, y = load_datasets()</span><br><span class="line">X_test = X[<span class="number">650</span>:]</span><br><span class="line">y_test = y[<span class="number">650</span>:]</span><br><span class="line">X = X[<span class="number">0</span>:<span class="number">650</span>]</span><br><span class="line">y = y[<span class="number">0</span>:<span class="number">650</span>]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_test_data</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="keyword">return</span> X_test, y_test</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">load_train_data</span><span class="params">(test_split=None, use_cross_validation=None, k_fold=None)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> use_cross_validation:</span><br><span class="line">        data = []</span><br><span class="line">        sfolder = StratifiedKFold(n_splits=k_fold, random_state=<span class="number">1</span>)</span><br><span class="line">        y_label = np.argmax(y, axis=<span class="number">1</span>)</span><br><span class="line">        <span class="keyword">for</span> train_index, valid_index <span class="keyword">in</span> sfolder.split(X, y_label):</span><br><span class="line">            X_train, X_valid, y_train, y_valid = X[train_index], X[valid_index], y[train_index], y[valid_index]</span><br><span class="line">            data_tmp = (X_train, X_valid, y_train, y_valid)</span><br><span class="line">            data.append(data_tmp)</span><br><span class="line">        <span class="keyword">return</span> data</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        X_train, X_valid, y_train, y_valid = train_test_split(X, y, test_size=test_split, random_state=<span class="number">1</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> X_train, X_valid, y_train, y_valid</span><br></pre></td></tr></table></figure>
+<p><strong>4. train.py ==&gt; 建立网络模型，进行训练</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> keras <span class="keyword">import</span> regularizers</span><br><span class="line"><span class="keyword">from</span> keras.applications.inception_v3 <span class="keyword">import</span> InceptionV3</span><br><span class="line"><span class="keyword">from</span> keras.callbacks <span class="keyword">import</span> ReduceLROnPlateau, ModelCheckpoint, TensorBoard, EarlyStopping</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> Dense</span><br><span class="line"><span class="keyword">from</span> keras.layers <span class="keyword">import</span> GlobalAveragePooling2D, Dropout</span><br><span class="line"><span class="keyword">from</span> keras.losses <span class="keyword">import</span> categorical_crossentropy</span><br><span class="line"><span class="keyword">from</span> keras.metrics <span class="keyword">import</span> categorical_accuracy</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> Model</span><br><span class="line"><span class="keyword">from</span> keras.optimizers <span class="keyword">import</span> Adam</span><br><span class="line"><span class="keyword">from</span> keras.preprocessing.image <span class="keyword">import</span> ImageDataGenerator</span><br><span class="line"><span class="keyword">import</span> tensorflow <span class="keyword">as</span> tf</span><br><span class="line"><span class="keyword">from</span> keras.backend.tensorflow_backend <span class="keyword">import</span> set_session</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> load_train_test_data <span class="keyword">import</span> load_train_data</span><br><span class="line"><span class="keyword">from</span> paths <span class="keyword">import</span> root_dir</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 超参数</span></span><br><span class="line">test_split = <span class="number">0.2</span>   <span class="comment"># 验证机划分比例</span></span><br><span class="line">num_classes = <span class="number">2</span> </span><br><span class="line">lr = <span class="number">1e-4</span></span><br><span class="line">epochs = <span class="number">30</span></span><br><span class="line">dropout_rate = <span class="number">0.5</span></span><br><span class="line">kernel_regularizer = regularizers.l1(<span class="number">1e-4</span>)   <span class="comment"># 正则化</span></span><br><span class="line">batch_size = <span class="number">64</span></span><br><span class="line">use_data_aug = <span class="keyword">True</span>  <span class="comment"># 是否使用数据增强</span></span><br><span class="line">use_cross_validation = <span class="keyword">False</span>   <span class="comment"># 是否使用交叉验证</span></span><br><span class="line">k_fold = <span class="number">5</span>  <span class="comment"># k折交叉验证的k</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">build_model</span><span class="params">()</span>:</span></span><br><span class="line">    base_model = InceptionV3(weights=<span class="string">'imagenet'</span>, include_top=<span class="keyword">False</span>)</span><br><span class="line">    img_input = base_model.output</span><br><span class="line"></span><br><span class="line">    outputs = GlobalAveragePooling2D(name=<span class="string">'avg_pool_my'</span>)(img_input)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> dropout_rate &gt; <span class="number">0.</span>:</span><br><span class="line">        outputs = Dropout(rate=dropout_rate)(outputs)</span><br><span class="line"></span><br><span class="line">    outputs = Dense(<span class="number">256</span>, activation=<span class="string">'elu'</span>, name=<span class="string">'fc1'</span>,</span><br><span class="line">                    kernel_regularizer=kernel_regularizer)(outputs)</span><br><span class="line">    outputs = Dropout(rate=dropout_rate)(outputs)</span><br><span class="line">    outputs = Dense(<span class="number">128</span>, activation=<span class="string">'elu'</span>, name=<span class="string">'fc2'</span>,</span><br><span class="line">                    kernel_regularizer=kernel_regularizer)(outputs)</span><br><span class="line">    outputs = Dropout(rate=dropout_rate)(outputs)</span><br><span class="line">    outputs = Dense(num_classes, activation=<span class="string">'softmax'</span>, name=<span class="string">'predictions'</span>,</span><br><span class="line">                    kernel_regularizer=kernel_regularizer)(outputs)</span><br><span class="line"></span><br><span class="line">    model = Model(inputs=base_model.input, outputs=outputs)</span><br><span class="line"></span><br><span class="line">    model.summary()</span><br><span class="line"></span><br><span class="line">    model.compile(optimizer=Adam(lr=lr), loss=categorical_crossentropy,</span><br><span class="line">                  metrics=[categorical_accuracy, ])</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> model</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">train_model</span><span class="params">(model, X_train, y_train, X_valid, y_valid)</span>:</span></span><br><span class="line">    <span class="comment"># 模型保存路径</span></span><br><span class="line">    model_path = os.path.join(root_dir, <span class="string">'model_data'</span>, <span class="string">'model_no_cross.h5'</span>)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 定义回调函数</span></span><br><span class="line">    callbacks = [</span><br><span class="line">        <span class="comment"># 当标准评估停止提升时，降低学习速率</span></span><br><span class="line">        ReduceLROnPlateau(monitor=<span class="string">'val_loss'</span>,</span><br><span class="line">                          factor=<span class="number">0.25</span>,</span><br><span class="line">                          patience=<span class="number">2</span>,</span><br><span class="line">                          verbose=<span class="number">1</span>,</span><br><span class="line">                          mode=<span class="string">'auto'</span>,</span><br><span class="line">                          min_lr=<span class="number">1e-7</span>),</span><br><span class="line">        <span class="comment"># 在每个训练期之后保存模型，最后保存的是最佳模型</span></span><br><span class="line">        ModelCheckpoint(model_path,</span><br><span class="line">                        monitor=<span class="string">'val_loss'</span>,</span><br><span class="line">                        save_best_only=<span class="keyword">True</span>,</span><br><span class="line">                        verbose=<span class="keyword">True</span>),</span><br><span class="line">        <span class="comment"># tensorboard 可视化</span></span><br><span class="line">        TensorBoard(log_dir=<span class="string">'./logs'</span>,</span><br><span class="line">                    histogram_freq=<span class="number">0</span>,</span><br><span class="line">                    write_graph=<span class="keyword">False</span>,</span><br><span class="line">                    write_grads=<span class="keyword">True</span>,</span><br><span class="line">                    write_images=<span class="keyword">True</span>,</span><br><span class="line">                    update_freq=<span class="string">'epoch'</span>)</span><br><span class="line">    ]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> use_data_aug:</span><br><span class="line">        datagen = ImageDataGenerator(rotation_range=<span class="number">180</span>,</span><br><span class="line">                                 horizontal_flip=<span class="keyword">True</span>,</span><br><span class="line">                                 vertical_flip=<span class="keyword">True</span>,</span><br><span class="line">                                 width_shift_range=<span class="number">0.1</span>,</span><br><span class="line">                                 height_shift_range=<span class="number">0.1</span>,</span><br><span class="line">                                 <span class="comment">#featurewise_center=True,  # 均值为0</span></span><br><span class="line">                                 <span class="comment">#featurewise_std_normalization=True  # 标准化</span></span><br><span class="line">                                 )</span><br><span class="line"></span><br><span class="line">        model.fit_generator(generator=datagen.flow(X_train, y_train, batch_size=batch_size),</span><br><span class="line">                        steps_per_epoch=X_train.shape[<span class="number">0</span>] // batch_size * <span class="number">2</span>,</span><br><span class="line">                        epochs=epochs,</span><br><span class="line">                        initial_epoch=<span class="number">0</span>,</span><br><span class="line">                        verbose=<span class="number">1</span>,</span><br><span class="line">                        validation_data=(X_valid, y_valid),</span><br><span class="line">                        callbacks=callbacks)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        model.fit(x=X_train,</span><br><span class="line">                  y=y_train,</span><br><span class="line">                  batch_size=batch_size,</span><br><span class="line">                  epochs=epochs,</span><br><span class="line">                  verbose=<span class="number">1</span>,</span><br><span class="line">                  validation_data=(X_valid, y_valid),</span><br><span class="line">                  callbacks=callbacks)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_gpu</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 指定使用的GPU</span></span><br><span class="line">    os.environ[<span class="string">"CUDA_VISIBLE_DEVICES"</span>] = <span class="string">"9"</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">## keras 默认占满gpu所有内存，所以要手动设定内存使用情况</span></span><br><span class="line">    config = tf.ConfigProto()</span><br><span class="line">    <span class="string">'''</span></span><br><span class="line"><span class="string">    # keras 设置gpu内存使用比例</span></span><br><span class="line"><span class="string">    config.gpu_options.per_process_gpu_memory_fraction = 0.5</span></span><br><span class="line"><span class="string">    '''</span></span><br><span class="line">    <span class="comment"># keras 设置gpu内存按需分配</span></span><br><span class="line">    config.gpu_options.allow_growth = <span class="keyword">True</span></span><br><span class="line">    set_session(tf.Session(config=config))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># 指定GPU</span></span><br><span class="line">    set_gpu()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 构建模型</span></span><br><span class="line">    model = build_model()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> use_cross_validation:</span><br><span class="line">        data = load_train_data(use_cross_validation=use_cross_validation, k_fold=k_fold)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(k_fold):</span><br><span class="line">            <span class="comment"># 加载数据</span></span><br><span class="line">            X_train, X_valid, y_train, y_valid = data[i]</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 训练模型</span></span><br><span class="line">            train_model(model, X_train, y_train, X_valid, y_valid)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="comment"># 加载数据</span></span><br><span class="line">        X_train, X_valid, y_train, y_valid = load_train_data(test_split=test_split)</span><br><span class="line"></span><br><span class="line">        <span class="comment"># 训练模型</span></span><br><span class="line">        train_model(model, X_train, y_train, X_valid, y_valid)</span><br></pre></td></tr></table></figure>
+<p><strong>5. eval.py ==&gt; 在测试集上对模型进行评估</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> load_model</span><br><span class="line"><span class="keyword">from</span> paths <span class="keyword">import</span> root_dir</span><br><span class="line"><span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score,precision_score,recall_score,f1_score</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> load_train_test_data <span class="keyword">import</span> load_test_data</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定使用的GPU</span></span><br><span class="line">os.environ[<span class="string">"CUDA_VISIBLE_DEVICES"</span>] = <span class="string">"9"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># 加载模型</span></span><br><span class="line">    model_path = os.path.join(root_dir, <span class="string">'model_data'</span>, <span class="string">'model_no_cross.h5'</span>)</span><br><span class="line">    model = load_model(model_path)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 评估数据</span></span><br><span class="line">    X_test, y_test = load_test_data()</span><br><span class="line"></span><br><span class="line">    <span class="comment"># y预测</span></span><br><span class="line">    y_pred = model.predict(X_test)</span><br><span class="line">    y_pred = np.argmax(y_pred, axis=<span class="number">1</span>)</span><br><span class="line">    y_test = np.argmax(y_test, axis=<span class="number">1</span>)</span><br><span class="line">    print(y_test)</span><br><span class="line">    print(y_pred)</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 准确率，精确率，召回率，F1</span></span><br><span class="line">    accuracy = accuracy_score(y_test, y_pred)</span><br><span class="line">    precision = precision_score(y_test, y_pred)</span><br><span class="line">    recall = recall_score(y_test, y_pred)</span><br><span class="line">    f1 = f1_score(y_test, y_pred)</span><br><span class="line"></span><br><span class="line">    print(<span class="string">"accuracy_score = %.2f"</span> % accuracy)</span><br><span class="line">    print(<span class="string">"precision_score = %.2f"</span> % precision)</span><br><span class="line">    print(<span class="string">"recall_score = %.2f"</span> % recall)</span><br><span class="line">    print(<span class="string">"f1_score = %.2f"</span> % f1)</span><br></pre></td></tr></table></figure>
+<p><strong>6. predict.py ==&gt; 对单张图片进行预测</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cv2 <span class="keyword">as</span> cv</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> keras.models <span class="keyword">import</span> load_model</span><br><span class="line"><span class="keyword">from</span> keras.preprocessing <span class="keyword">import</span> image</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> paths <span class="keyword">import</span> root_dir</span><br><span class="line"></span><br><span class="line"><span class="comment"># 指定使用的GPU</span></span><br><span class="line">os.environ[<span class="string">"CUDA_VISIBLE_DEVICES"</span>] = <span class="string">"9"</span></span><br><span class="line"></span><br><span class="line">clsss_name = &#123;<span class="number">0</span>: <span class="string">"AK"</span>, <span class="number">1</span>: <span class="string">"SK"</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    <span class="comment"># 加载模型</span></span><br><span class="line">    model_path = os.path.join(root_dir, <span class="string">'model_data'</span>, <span class="string">'model_no_cross.h5'</span>)</span><br><span class="line">    model = load_model(model_path)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> AK_or_SK_dir <span class="keyword">in</span> os.listdir(os.path.join(root_dir, <span class="string">"images"</span>)):</span><br><span class="line">        <span class="keyword">for</span> fname <span class="keyword">in</span> os.listdir(os.path.join(root_dir, <span class="string">"images"</span>, AK_or_SK_dir)):</span><br><span class="line">            <span class="comment"># 读取图片</span></span><br><span class="line">            img_path = os.path.join(root_dir, <span class="string">"images"</span>, AK_or_SK_dir, fname)</span><br><span class="line">            img = image.load_img(img_path, target_size=(<span class="number">224</span>, <span class="number">224</span>))</span><br><span class="line">            img = image.img_to_array(img)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 扩充维度</span></span><br><span class="line">            img = np.expand_dims(img, axis=<span class="number">0</span>)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 预测</span></span><br><span class="line">            pred = model.predict(img)</span><br><span class="line"></span><br><span class="line">            <span class="comment"># 打印图片类别</span></span><br><span class="line">            y_pred = np.argmax(pred, axis=<span class="number">1</span>)</span><br><span class="line">            img_name = clsss_name[y_pred[<span class="number">0</span>]]</span><br><span class="line">            print(fname, <span class="string">"的预测概率是："</span>)</span><br><span class="line">            print(pred, <span class="string">" ==&gt; "</span>, img_name)</span><br></pre></td></tr></table></figure>
+<h3 id="运行结果"><a href="#运行结果" class="headerlink" title="运行结果"></a>运行结果</h3><p><strong>1. 训练结果</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819eagy1g2svdxnpamj217v0fbjso.jpg" alt=""></p>
+<p><strong>2. 评估结果</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819eagy1g2svg4hlb4j20lq07i748.jpg" alt=""></p>
+<p><strong>3. 预测结果</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819eagy1g2svk9htyij20di07eaa8.jpg" alt=""></p>
+<h3 id="知识点总结"><a href="#知识点总结" class="headerlink" title="知识点总结"></a>知识点总结</h3><ol>
+<li>如何加载实际数据，如何保存成npy文件，如何打乱数据，如何划分数据，如何进行交叉验证</li>
+<li>如何使用keras进行迁移学习</li>
+<li>keras中数据增强、回调函数的使用，回调函数涉及：学习速率调整、保存最好模型、tensorboard可视化</li>
+<li>如何使用sklearn计算准确率，精确率，召回率，F1_score</li>
+<li>如何对单张图片进行预测，并打印分类概率</li>
+<li>如何指定特定GPU训练，如何指定使用GPU的内存情况</li>
+</ol>
+<h3 id="github地址"><a href="#github地址" class="headerlink" title="github地址"></a>github地址</h3><p><a href="https://github.com/macrozhang/keras_binary_classification" target="_blank" rel="noopener">github</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/keras/" rel="tag"># keras</a>
+          
+            <a href="/tags/二分类/" rel="tag"># 二分类</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/06/opencv-085/" rel="next" title="opencv-085-视频分析(移动对象的KLT光流跟踪算法_删除静止点与绘制跟踪轨迹)">
+                <i class="fa fa-chevron-left"></i> opencv-085-视频分析(移动对象的KLT光流跟踪算法_删除静止点与绘制跟踪轨迹)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/05/08/opencv-090/" rel="prev" title="opencv-090-视频分析(对象移动轨迹绘制)">
+                opencv-090-视频分析(对象移动轨迹绘制) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Macro">
+            
+              <p class="site-author-name" itemprop="name">Macro</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">271</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决思路"><span class="nav-number">2.</span> <span class="nav-text">解决思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码结构"><span class="nav-number">3.</span> <span class="nav-text">代码结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体代码"><span class="nav-number">4.</span> <span class="nav-text">具体代码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#运行结果"><span class="nav-number">5.</span> <span class="nav-text">运行结果</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#知识点总结"><span class="nav-number">6.</span> <span class="nav-text">知识点总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#github地址"><span class="nav-number">7.</span> <span class="nav-text">github地址</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Macro</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

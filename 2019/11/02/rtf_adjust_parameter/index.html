@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="-rILxxxxx7gbfxxxxx-E1VWxxxxxTcq6pxgs_xxxxx">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="随机森林,机器学习调参,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="调参基本知识模型复杂度和泛化误差： 当模型太复杂，模型就会过拟合，泛化能力不够，导致泛化误差大；当模型简单，模型就会欠拟合，拟合能力不够，导致泛化误差也大；只有当模型复杂度刚刚好的时候才能够达到泛化误差最小的目标。  树模型是天生复杂度高的模型，我们调整参数，基本是将模型往图像的左边推动。调参的时候一般按照参数的重要程度依次调整，随机森林参数的重要程度如下：  参考 导包123456789from">
+<meta name="keywords" content="随机森林,机器学习调参">
+<meta property="og:type" content="article">
+<meta property="og:title" content="随机森林在泰坦尼克号数据上的调参">
+<meta property="og:url" content="https://macrozhang.github.io/2019/11/02/rtf_adjust_parameter/index.html">
+<meta property="og:site_name" content="Macro">
+<meta property="og:description" content="调参基本知识模型复杂度和泛化误差： 当模型太复杂，模型就会过拟合，泛化能力不够，导致泛化误差大；当模型简单，模型就会欠拟合，拟合能力不够，导致泛化误差也大；只有当模型复杂度刚刚好的时候才能够达到泛化误差最小的目标。  树模型是天生复杂度高的模型，我们调整参数，基本是将模型往图像的左边推动。调参的时候一般按照参数的重要程度依次调整，随机森林参数的重要程度如下：  参考 导包123456789from">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g8jsp65ycrj20dy08lwfa.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g8jstxegq2j210k0lx4at.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g8jsxjxsdjj20tm04oaa8.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g8jsyegqi3j20tn04qaa8.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g8jszmhgwgj20g204lglj.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g8jt6l6ij4j20fn04njra.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g8jtlcq22rj20ub080q37.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g8jtmonr0fj20tx07xt90.jpg">
+<meta property="og:updated_time" content="2019-11-02T09:43:32.683Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="随机森林在泰坦尼克号数据上的调参">
+<meta name="twitter:description" content="调参基本知识模型复杂度和泛化误差： 当模型太复杂，模型就会过拟合，泛化能力不够，导致泛化误差大；当模型简单，模型就会欠拟合，拟合能力不够，导致泛化误差也大；只有当模型复杂度刚刚好的时候才能够达到泛化误差最小的目标。  树模型是天生复杂度高的模型，我们调整参数，基本是将模型往图像的左边推动。调参的时候一般按照参数的重要程度依次调整，随机森林参数的重要程度如下：  参考 导包123456789from">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g8jsp65ycrj20dy08lwfa.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://macrozhang.github.io/2019/11/02/rtf_adjust_parameter/">
+
+
+<meta name="google-site-verification" content="UEyEKq1HPEEwvXN8IKUs4MWiU4oNmSsZ49YysJ45u7M">
+
+
+
+  <title>随机森林在泰坦尼克号数据上的调参 | Macro</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Macro</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://macrozhang.github.io/2019/11/02/rtf_adjust_parameter/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Macro">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Macro">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">随机森林在泰坦尼克号数据上的调参</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-02T16:37:43+08:00">
+                2019-11-02
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ML-DL/" itemprop="url" rel="index">
+                    <span itemprop="name">ML/DL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="调参基本知识"><a href="#调参基本知识" class="headerlink" title="调参基本知识"></a>调参基本知识</h4><p><strong>模型复杂度和泛化误差：</strong> 当模型太复杂，模型就会过拟合，泛化能力不够，导致泛化误差大；当模型简单，模型就会欠拟合，拟合能力不够，导致泛化误差也大；只有当模型复杂度刚刚好的时候才能够达到泛化误差最小的目标。</p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g8jsp65ycrj20dy08lwfa.jpg" alt="1.png"></p>
+<p>树模型是天生复杂度高的模型，我们调整参数，基本是将模型往图像的左边推动。调参的时候一般按照参数的重要程度依次调整，随机森林参数的重要程度如下：</p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g8jstxegq2j210k0lx4at.jpg" alt="2.png"></p>
+<p><a href="https://zhuanlan.zhihu.com/p/70648177" target="_blank" rel="noopener">参考</a></p>
+<h4 id="导包"><a href="#导包" class="headerlink" title="导包"></a>导包</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier, RandomForestRegressor</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> GridSearchCV</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> cross_val_score, train_test_split</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> warnings</span><br><span class="line">warnings.filterwarnings(<span class="string">'ignore'</span>)</span><br></pre></td></tr></table></figure>
+<h4 id="读取并探索数据"><a href="#读取并探索数据" class="headerlink" title="读取并探索数据"></a>读取并探索数据</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">data = pd.read_csv(<span class="string">r'data.csv'</span>)</span><br><span class="line">print(data.info())</span><br><span class="line"></span><br><span class="line"><span class="comment"># output</span></span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>'&gt;</span></span><br><span class="line"><span class="class"><span class="title">RangeIndex</span>:</span> <span class="number">891</span> entries, <span class="number">0</span> to <span class="number">890</span></span><br><span class="line">Data columns (total <span class="number">12</span> columns):</span><br><span class="line">PassengerId    <span class="number">891</span> non-null int64</span><br><span class="line">Survived       <span class="number">891</span> non-null int64</span><br><span class="line">Pclass         <span class="number">891</span> non-null int64</span><br><span class="line">Name           <span class="number">891</span> non-null object</span><br><span class="line">Sex            <span class="number">891</span> non-null object</span><br><span class="line">Age            <span class="number">714</span> non-null float64</span><br><span class="line">SibSp          <span class="number">891</span> non-null int64</span><br><span class="line">Parch          <span class="number">891</span> non-null int64</span><br><span class="line">Ticket         <span class="number">891</span> non-null object</span><br><span class="line">Fare           <span class="number">891</span> non-null float64</span><br><span class="line">Cabin          <span class="number">204</span> non-null object</span><br><span class="line">Embarked       <span class="number">889</span> non-null object</span><br><span class="line">dtypes: float64(<span class="number">2</span>), int64(<span class="number">5</span>), object(<span class="number">5</span>)</span><br><span class="line">memory usage: <span class="number">83.6</span>+ KB</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.head()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g8jsxjxsdjj20tm04oaa8.jpg" alt="1.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 将标签类移动到最后一列</span></span><br><span class="line">tmp = data.pop(<span class="string">'Survived'</span>)</span><br><span class="line">data.insert(len(data.columns), <span class="string">'Survived'</span>, tmp)</span><br><span class="line">data.head()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g8jsyegqi3j20tn04qaa8.jpg" alt="1.png"></p>
+<h4 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 筛选特征，删除缺失值过多的列，和观察判断来说和预测的y没有关系的列</span></span><br><span class="line">data.drop([<span class="string">"Cabin"</span>, <span class="string">"Name"</span>, <span class="string">"Ticket"</span>], axis=<span class="number">1</span>, inplace=<span class="keyword">True</span>)</span><br><span class="line">data.head()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g8jszmhgwgj20g204lglj.jpg" alt="1.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">data.info()</span><br><span class="line"></span><br><span class="line"><span class="comment"># output</span></span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>'&gt;</span></span><br><span class="line"><span class="class"><span class="title">RangeIndex</span>:</span> <span class="number">891</span> entries, <span class="number">0</span> to <span class="number">890</span></span><br><span class="line">Data columns (total <span class="number">9</span> columns):</span><br><span class="line">PassengerId    <span class="number">891</span> non-null int64</span><br><span class="line">Pclass         <span class="number">891</span> non-null int64</span><br><span class="line">Sex            <span class="number">891</span> non-null object</span><br><span class="line">Age            <span class="number">714</span> non-null float64</span><br><span class="line">SibSp          <span class="number">891</span> non-null int64</span><br><span class="line">Parch          <span class="number">891</span> non-null int64</span><br><span class="line">Fare           <span class="number">891</span> non-null float64</span><br><span class="line">Embarked       <span class="number">889</span> non-null object</span><br><span class="line">Survived       <span class="number">891</span> non-null int64</span><br><span class="line">dtypes: float64(<span class="number">2</span>), int64(<span class="number">5</span>), object(<span class="number">2</span>)</span><br><span class="line">memory usage: <span class="number">62.7</span>+ KB</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 去掉“Embarked”缺失值部分所在的行</span></span><br><span class="line">data.dropna(subset=[<span class="string">'Embarked'</span>], inplace=<span class="keyword">True</span>)</span><br><span class="line">data.info()</span><br><span class="line"></span><br><span class="line"><span class="comment"># output</span></span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>'&gt;</span></span><br><span class="line"><span class="class"><span class="title">Int64Index</span>:</span> <span class="number">889</span> entries, <span class="number">0</span> to <span class="number">890</span></span><br><span class="line">Data columns (total <span class="number">9</span> columns):</span><br><span class="line">PassengerId    <span class="number">889</span> non-null int64</span><br><span class="line">Pclass         <span class="number">889</span> non-null int64</span><br><span class="line">Sex            <span class="number">889</span> non-null object</span><br><span class="line">Age            <span class="number">712</span> non-null float64</span><br><span class="line">SibSp          <span class="number">889</span> non-null int64</span><br><span class="line">Parch          <span class="number">889</span> non-null int64</span><br><span class="line">Fare           <span class="number">889</span> non-null float64</span><br><span class="line">Embarked       <span class="number">889</span> non-null object</span><br><span class="line">Survived       <span class="number">889</span> non-null int64</span><br><span class="line">dtypes: float64(<span class="number">2</span>), int64(<span class="number">5</span>), object(<span class="number">2</span>)</span><br><span class="line">memory usage: <span class="number">69.5</span>+ KB</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 字符串特征转数值特征，这里只是简单的情况，详细的要再多多学习</span></span><br><span class="line">labels = data[<span class="string">'Embarked'</span>].unique().tolist()</span><br><span class="line">data[<span class="string">'Embarked'</span>] = data[<span class="string">'Embarked'</span>].apply(<span class="keyword">lambda</span> x : labels.index(x))</span><br><span class="line"></span><br><span class="line"><span class="comment"># 'Sex' 只有两个取值，讨巧的做法</span></span><br><span class="line">data[<span class="string">'Sex'</span>] = (data[<span class="string">'Sex'</span>] == <span class="string">'male'</span>).astype(<span class="string">"int"</span>)</span><br><span class="line"></span><br><span class="line">data.head()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g8jt6l6ij4j20fn04njra.jpg" alt="1.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 利用随机森林处理缺失值列 “Age”</span></span><br><span class="line"></span><br><span class="line">age_index = data.columns.get_loc(<span class="string">'Age'</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 构建新特征矩阵和新标签</span></span><br><span class="line">df = data</span><br><span class="line">y_new = df.iloc[:, age_index]</span><br><span class="line">X_new = df.iloc[:, df.columns != <span class="string">'Age'</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 找出训练集和测试集</span></span><br><span class="line">y_train = y_new[y_new.notnull()]</span><br><span class="line">y_test = y_new[y_new.isnull()]</span><br><span class="line">x_train = X_new.loc[y_train.index, :]</span><br><span class="line">x_test = X_new.loc[y_test.index, :]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 用随机森林回归来填补缺失值</span></span><br><span class="line">rtf = RandomForestRegressor(n_estimators=<span class="number">100</span>)</span><br><span class="line">rtf = rtf.fit(x_train, y_train)</span><br><span class="line">y_predict = rtf.predict(x_test)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 将填补好的特征返回到原始矩阵</span></span><br><span class="line">data.loc[data.iloc[:,age_index].isnull(), <span class="string">'Age'</span>] = y_predict</span><br><span class="line"></span><br><span class="line">data.info()</span><br><span class="line"></span><br><span class="line"><span class="comment"># output</span></span><br><span class="line">&lt;<span class="class"><span class="keyword">class</span> '<span class="title">pandas</span>.<span class="title">core</span>.<span class="title">frame</span>.<span class="title">DataFrame</span>'&gt;</span></span><br><span class="line"><span class="class"><span class="title">Int64Index</span>:</span> <span class="number">889</span> entries, <span class="number">0</span> to <span class="number">890</span></span><br><span class="line">Data columns (total <span class="number">9</span> columns):</span><br><span class="line">PassengerId    <span class="number">889</span> non-null int64</span><br><span class="line">Pclass         <span class="number">889</span> non-null int64</span><br><span class="line">Sex            <span class="number">889</span> non-null int32</span><br><span class="line">Age            <span class="number">889</span> non-null float64</span><br><span class="line">SibSp          <span class="number">889</span> non-null int64</span><br><span class="line">Parch          <span class="number">889</span> non-null int64</span><br><span class="line">Fare           <span class="number">889</span> non-null float64</span><br><span class="line">Embarked       <span class="number">889</span> non-null int64</span><br><span class="line">Survived       <span class="number">889</span> non-null int64</span><br><span class="line">dtypes: float64(<span class="number">2</span>), int32(<span class="number">1</span>), int64(<span class="number">6</span>)</span><br><span class="line">memory usage: <span class="number">106.0</span> KB</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 获取特征和标签</span></span><br><span class="line">X = data.iloc[:, data.columns != <span class="string">'Survived'</span>]</span><br><span class="line">y = data.iloc[:, data.columns == <span class="string">'Survived'</span>]</span><br><span class="line"></span><br><span class="line">X.shape, y.shape <span class="comment"># ((889, 8), (889, 1))</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 重新调整行索引</span></span><br><span class="line"><span class="keyword">for</span> x <span class="keyword">in</span> [X, y]:</span><br><span class="line">    x.index = range(x.shape[<span class="number">0</span>])</span><br></pre></td></tr></table></figure>
+<h4 id="进行一次简单建模，看模型本身在数据集上的效果"><a href="#进行一次简单建模，看模型本身在数据集上的效果" class="headerlink" title="进行一次简单建模，看模型本身在数据集上的效果"></a>进行一次简单建模，看模型本身在数据集上的效果</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">rtf = RandomForestClassifier(n_estimators=<span class="number">100</span>, random_state=<span class="number">90</span>)</span><br><span class="line">score_pre = cross_val_score(rtf, X, y, cv=<span class="number">10</span>).mean()</span><br><span class="line"></span><br><span class="line">score_pre <span class="comment"># 0.8323799795709907</span></span><br></pre></td></tr></table></figure>
+<h4 id="调参"><a href="#调参" class="headerlink" title="调参"></a>调参</h4><p>参数具有范围的，可以采用网格搜索进行调参，参数没有范围的，采用学习曲线进行调整。接下来按照参数重要性依次调整。</p>
+<p><strong>1. n_estimators</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 利用学习曲线，确定 n_estimators 的大致范围</span></span><br><span class="line">scores = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, <span class="number">201</span>, <span class="number">10</span>):</span><br><span class="line">    rtf = RandomForestClassifier(n_estimators=i, n_jobs=<span class="number">-1</span>, random_state=<span class="number">90</span>)</span><br><span class="line">    score = cross_val_score(rtf, X, y, cv=<span class="number">10</span>).mean()</span><br><span class="line">    scores.append(score)</span><br><span class="line">    </span><br><span class="line">print(<span class="string">"最大得分: &#123;&#125;, max_n_estimators = &#123;&#125;"</span>.format(max(scores), scores.index(max(scores))*<span class="number">10</span> + <span class="number">1</span>))</span><br><span class="line">plt.figure(figsize=[<span class="number">20</span>, <span class="number">5</span>])</span><br><span class="line">plt.plot(range(<span class="number">1</span>,<span class="number">201</span>,<span class="number">10</span>), scores)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># output</span></span><br><span class="line"><span class="comment"># 最大得分: 0.8357507660878447, max_n_estimators = 41</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g8jtlcq22rj20ub080q37.jpg" alt="1.png"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在确定好的范围内，确定最佳 n_estimators</span></span><br><span class="line">scores = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">25</span>, <span class="number">50</span>):</span><br><span class="line">    rtf = RandomForestClassifier(n_estimators=i, n_jobs=<span class="number">-1</span>, random_state=<span class="number">90</span>)</span><br><span class="line">    score = cross_val_score(rtf, X, y, cv=<span class="number">10</span>).mean()</span><br><span class="line">    scores.append(score)</span><br><span class="line">    </span><br><span class="line">print(<span class="string">"最大得分: &#123;&#125;, max_n_estimators = &#123;&#125;"</span>.format(max(scores), [*range(<span class="number">25</span>,<span class="number">50</span>)][scores.index(max(scores))]))</span><br><span class="line">plt.figure(figsize=[<span class="number">20</span>, <span class="number">5</span>])</span><br><span class="line">plt.plot(range(<span class="number">25</span>,<span class="number">50</span>), scores)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line"><span class="comment"># output</span></span><br><span class="line"><span class="comment"># 最大得分: 0.8391215526046987, max_n_estimators = 47</span></span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g8jtmonr0fj20tx07xt90.jpg" alt="1.png"></p>
+<p><strong>总结：</strong>准确率从 0.8323 提升到 0.8391 ，泛化误差减小，模型在图像上往左移动。</p>
+<p><strong>2. max_depth</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># max_depth 的大小根据数据量调整</span></span><br><span class="line">param_grid = &#123;<span class="string">'max_depth'</span>: np.arange(<span class="number">1</span>, <span class="number">20</span>, <span class="number">1</span>)&#125;</span><br><span class="line"></span><br><span class="line">rtf = RandomForestClassifier(n_estimators=<span class="number">47</span>, n_jobs=<span class="number">-1</span>, random_state=<span class="number">90</span>)</span><br><span class="line">GS = GridSearchCV(rtf, param_grid, cv=<span class="number">10</span>)</span><br><span class="line">GS.fit(X, y)</span><br><span class="line"></span><br><span class="line">print(GS.best_params_, GS.best_score_) <span class="comment"># &#123;'max_depth': 10&#125; 0.8413948256467941</span></span><br></pre></td></tr></table></figure>
+<p><strong>总结：</strong> 准确率从 0.8391 提升到 0.84139 ，泛化误差减小，模型在图像上往左移动。</p>
+<p><strong>3. min_samples_leaf</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">param_grid = &#123;<span class="string">'min_samples_leaf'</span>: np.arange(<span class="number">1</span>, <span class="number">20</span>, <span class="number">1</span>)&#125;</span><br><span class="line"></span><br><span class="line">rtf = RandomForestClassifier(n_estimators=<span class="number">47</span>, max_depth=<span class="number">10</span>, n_jobs=<span class="number">-1</span>, random_state=<span class="number">90</span>)</span><br><span class="line">GS = GridSearchCV(rtf, param_grid, cv=<span class="number">10</span>)</span><br><span class="line">GS.fit(X, y)</span><br><span class="line"></span><br><span class="line">print(GS.best_params_, GS.best_score_) <span class="comment"># &#123;'min_samples_leaf': 3&#125; 0.84251968503937</span></span><br></pre></td></tr></table></figure>
+<p><strong>总结：</strong>准确率从 0.84139 提升到 0.84252 ，泛化误差减小，模型在图像上往左移动。</p>
+<p><strong>4. min_samples_split</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">param_grid = &#123;<span class="string">'min_samples_split'</span>: np.arange(<span class="number">2</span>, <span class="number">22</span>, <span class="number">1</span>)&#125;</span><br><span class="line"></span><br><span class="line">rtf = RandomForestClassifier(n_estimators=<span class="number">47</span>, max_depth=<span class="number">10</span>, min_samples_leaf=<span class="number">3</span>, n_jobs=<span class="number">-1</span>, random_state=<span class="number">90</span>)</span><br><span class="line">GS = GridSearchCV(rtf, param_grid, cv=<span class="number">10</span>)</span><br><span class="line">GS.fit(X, y)</span><br><span class="line"></span><br><span class="line">print(GS.best_params_, GS.best_score_) <span class="comment"># &#123;'min_samples_split': 12&#125; 0.8481439820022497</span></span><br></pre></td></tr></table></figure>
+<p><strong>总结：</strong>准确率从 0.84252 提升到 0.84814 ，泛化误差减小，模型在图像上往左移动。</p>
+<p><strong>5. max_features</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">param_grid = &#123;<span class="string">'max_features'</span>: np.arange(<span class="number">3</span>, <span class="number">8</span>, <span class="number">1</span>)&#125;</span><br><span class="line"></span><br><span class="line">rtf = RandomForestClassifier(n_estimators=<span class="number">47</span>, max_depth=<span class="number">10</span>, min_samples_leaf=<span class="number">3</span>, </span><br><span class="line">                             min_samples_split=<span class="number">12</span>, n_jobs=<span class="number">-1</span>, random_state=<span class="number">90</span>)</span><br><span class="line">GS = GridSearchCV(rtf, param_grid, cv=<span class="number">10</span>)</span><br><span class="line">GS.fit(X, y)</span><br><span class="line"></span><br><span class="line">print(GS.best_params_, GS.best_score_) <span class="comment"># &#123;'max_features': 3&#125; 0.843644544431946</span></span><br></pre></td></tr></table></figure>
+<p><strong>总结：</strong>调整 max_features 后，准确率下降，说明模型原先已经位于泛化误差曲线最低点，无论怎么调，都让泛化误差升高， 所以忽略此次调参。</p>
+<p><strong>6. criterion</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">param_grid = &#123;<span class="string">'criterion'</span>: [<span class="string">'gini'</span>, <span class="string">'entropy'</span>]&#125;</span><br><span class="line"></span><br><span class="line">rtf = RandomForestClassifier(n_estimators=<span class="number">47</span>, max_depth=<span class="number">10</span>, min_samples_leaf=<span class="number">3</span>, </span><br><span class="line">                             min_samples_split=<span class="number">12</span>, n_jobs=<span class="number">-1</span>, random_state=<span class="number">90</span>)</span><br><span class="line">GS = GridSearchCV(rtf, param_grid, cv=<span class="number">10</span>)</span><br><span class="line">GS.fit(X, y)</span><br><span class="line"></span><br><span class="line">print(GS.best_params_, GS.best_score_) <span class="comment"># &#123;'criterion': 'gini'&#125; 0.8481439820022497</span></span><br></pre></td></tr></table></figure>
+<p><strong>总结：</strong>准确率没有提升，{‘criterion’: ‘gini’} 为默认参数，不需要调整</p>
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>通过调参，使得准确率从最初的 <strong>0.832</strong> 提升到 <strong>0.848</strong>。</p>
+<p>最后的调参结果是：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">rtf = RandomForestClassifier(n_estimators=<span class="number">47</span>, </span><br><span class="line">                             max_depth=<span class="number">10</span>, </span><br><span class="line">                             min_samples_leaf=<span class="number">3</span>, </span><br><span class="line">                             min_samples_split=<span class="number">12</span>, </span><br><span class="line">                             n_jobs=<span class="number">-1</span>, </span><br><span class="line">                             random_state=<span class="number">90</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/随机森林/" rel="tag"># 随机森林</a>
+          
+            <a href="/tags/机器学习调参/" rel="tag"># 机器学习调参</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/02/rtf_missing_value/" rel="next" title="使用随机森林填补缺失值">
+                <i class="fa fa-chevron-left"></i> 使用随机森林填补缺失值
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/11/05/knn/" rel="prev" title="KNN 算法的介绍和实现">
+                KNN 算法的介绍和实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Macro">
+            
+              <p class="site-author-name" itemprop="name">Macro</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">271</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#调参基本知识"><span class="nav-number">1.</span> <span class="nav-text">调参基本知识</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#导包"><span class="nav-number">2.</span> <span class="nav-text">导包</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#读取并探索数据"><span class="nav-number">3.</span> <span class="nav-text">读取并探索数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据预处理"><span class="nav-number">4.</span> <span class="nav-text">数据预处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#进行一次简单建模，看模型本身在数据集上的效果"><span class="nav-number">5.</span> <span class="nav-text">进行一次简单建模，看模型本身在数据集上的效果</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调参"><span class="nav-number">6.</span> <span class="nav-text">调参</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-number">7.</span> <span class="nav-text">总结</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Macro</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

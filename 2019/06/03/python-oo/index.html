@@ -1,0 +1,1133 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="-rILxxxxx7gbfxxxxx-E1VWxxxxxTcq6pxgs_xxxxx">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="python-面向对象，运算符重载，类函数与静态函数，多重继承，抽象类,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="面向对象基本概念1234567891011121314151617181920212223242526272829303132333435363738394041class Document():    def __init__(self, title, author, context):        print(&apos;init function called&apos;)        self.title">
+<meta name="keywords" content="python-面向对象，运算符重载，类函数与静态函数，多重继承，抽象类">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python-面向对象，运算符重载，类函数与静态函数，多重继承，抽象类">
+<meta property="og:url" content="https://macrozhang.github.io/2019/06/03/python-oo/index.html">
+<meta property="og:site_name" content="Macro">
+<meta property="og:description" content="面向对象基本概念1234567891011121314151617181920212223242526272829303132333435363738394041class Document():    def __init__(self, title, author, context):        print(&apos;init function called&apos;)        self.title">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-06-06T08:49:15.317Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python-面向对象，运算符重载，类函数与静态函数，多重继承，抽象类">
+<meta name="twitter:description" content="面向对象基本概念1234567891011121314151617181920212223242526272829303132333435363738394041class Document():    def __init__(self, title, author, context):        print(&apos;init function called&apos;)        self.title">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://macrozhang.github.io/2019/06/03/python-oo/">
+
+
+<meta name="google-site-verification" content="UEyEKq1HPEEwvXN8IKUs4MWiU4oNmSsZ49YysJ45u7M">
+
+
+
+  <title>python-面向对象，运算符重载，类函数与静态函数，多重继承，抽象类 | Macro</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Macro</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://macrozhang.github.io/2019/06/03/python-oo/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Macro">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Macro">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python-面向对象，运算符重载，类函数与静态函数，多重继承，抽象类</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-06-03T22:57:03+08:00">
+                2019-06-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/python/" itemprop="url" rel="index">
+                    <span itemprop="name">python</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="面向对象基本概念"><a href="#面向对象基本概念" class="headerlink" title="面向对象基本概念"></a>面向对象基本概念</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Document</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, title, author, context)</span>:</span></span><br><span class="line">        print(<span class="string">'init function called'</span>)</span><br><span class="line">        self.title = title</span><br><span class="line">        self.author = author</span><br><span class="line">        self.__context = context <span class="comment"># __ 开头的属性是私有属性</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_context_length</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> len(self.__context)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">intercept_context</span><span class="params">(self, length)</span>:</span></span><br><span class="line">        self.__context = self.__context[:length]</span><br><span class="line"></span><br><span class="line">harry_potter_book = Document(<span class="string">'Harry Potter'</span>, <span class="string">'J. K. Rowling'</span>, <span class="string">'... Forever Do not believe any thing is capable of thinking independently ...'</span>)</span><br><span class="line"></span><br><span class="line">print(harry_potter_book.title)</span><br><span class="line">print(harry_potter_book.author)</span><br><span class="line">print(harry_potter_book.get_context_length())</span><br><span class="line"></span><br><span class="line">harry_potter_book.intercept_context(<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line">print(harry_potter_book.get_context_length())</span><br><span class="line"></span><br><span class="line">print(harry_potter_book.__context)</span><br><span class="line"></span><br><span class="line"><span class="comment">########## 输出 ##########</span></span><br><span class="line"></span><br><span class="line">init function called</span><br><span class="line">Harry Potter</span><br><span class="line">J. K. Rowling</span><br><span class="line"><span class="number">77</span></span><br><span class="line"><span class="number">10</span></span><br><span class="line"></span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">AttributeError                            Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input<span class="number">-5</span>-b4d048d75003&gt; <span class="keyword">in</span> &lt;module&gt;()</span><br><span class="line">     <span class="number">22</span> print(harry_potter_book.get_context_length())</span><br><span class="line">     <span class="number">23</span> </span><br><span class="line">---&gt; 24 print(harry_potter_book.__context)</span><br><span class="line"></span><br><span class="line">AttributeError: <span class="string">'Document'</span> object has no attribute <span class="string">'__context'</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li><p>类：一群有着相似性的事物的集合，这里对应 Python 的 class。</p>
+</li>
+<li><p>对象：集合中的一个事物，这里对应由 class 生成的某一个 object，比如代码中的 -harry_potter_book。</p>
+</li>
+<li><p>属性：对象的某个静态特征，比如上述代码中的 title、author 和 __context。</p>
+</li>
+<li><p>函数：对象的某个动态能力，比如上述代码中的 intercept_context () 函数。</p>
+</li>
+</ul>
+<p><strong>注意：</strong>如果一个属性以 <strong> （注意，此处有两个 _） 开头，我们就默认这个属性是私有属性。私有属性，是指不希望在类的函数之外的地方被访问和修改的属性。所以，你可以看到，title 和 author 能够很自由地被打印出来，但是 print(harry_potter_book.</strong>context)会报错。</p>
+<p><strong>类的专有方法：</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">__init__ : 构造函数，在生成对象时调用</span><br><span class="line">__del__ : 析构函数，释放对象时使用</span><br><span class="line">__repr__ : 打印，转换</span><br><span class="line">__setitem__ : 按照索引赋值</span><br><span class="line">__getitem__: 按照索引获取值</span><br><span class="line">__len__: 获得长度</span><br><span class="line">__cmp__: 比较运算</span><br><span class="line">__call__: 函数调用</span><br><span class="line">__add__: 加运算</span><br><span class="line">__sub__: 减运算</span><br><span class="line">__mul__: 乘运算</span><br><span class="line">__truediv__: 除运算</span><br><span class="line">__mod__: 求余运算</span><br><span class="line">__pow__: 乘方</span><br></pre></td></tr></table></figure>
+<p><strong>举例，实现运算符重载：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Vector</span>:</span></span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, a, b)</span>:</span></span><br><span class="line">      self.a = a</span><br><span class="line">      self.b = b</span><br><span class="line"> </span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__str__</span><span class="params">(self)</span>:</span></span><br><span class="line">      <span class="keyword">return</span> <span class="string">'Vector (%d, %d)'</span> % (self.a, self.b)</span><br><span class="line">   </span><br><span class="line">   <span class="function"><span class="keyword">def</span> <span class="title">__add__</span><span class="params">(self,other)</span>:</span></span><br><span class="line">      <span class="keyword">return</span> Vector(self.a + other.a, self.b + other.b)</span><br><span class="line"> </span><br><span class="line">v1 = Vector(<span class="number">2</span>,<span class="number">10</span>)</span><br><span class="line">v2 = Vector(<span class="number">5</span>,<span class="number">-2</span>)</span><br><span class="line"><span class="keyword">print</span> (v1 + v2)</span><br><span class="line"></span><br><span class="line"><span class="comment">## output</span></span><br><span class="line"><span class="comment"># Vector(7,8)</span></span><br></pre></td></tr></table></figure>
+<h4 id="类函数与静态函数"><a href="#类函数与静态函数" class="headerlink" title="类函数与静态函数"></a>类函数与静态函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Document</span><span class="params">()</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 类中定义常量</span></span><br><span class="line">    WELCOME_STR = <span class="string">'Welcome! The context for this book is &#123;&#125;.'</span></span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, title, author, context)</span>:</span></span><br><span class="line">        print(<span class="string">'init function called'</span>)</span><br><span class="line">        self.title = title</span><br><span class="line">        self.author = author</span><br><span class="line">        self.__context = context</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 类函数</span></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">create_empty_book</span><span class="params">(cls, title, author)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> cls(title=title, author=author, context=<span class="string">'nothing'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 成员函数</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_context_length</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> len(self.__context)</span><br><span class="line">    </span><br><span class="line">    <span class="comment"># 静态函数</span></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_welcome</span><span class="params">(context)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> Document.WELCOME_STR.format(context)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">empty_book = Document.create_empty_book(<span class="string">'What Every Man Thinks About Apart from Sex'</span>, <span class="string">'Professor Sheridan Simove'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">print(empty_book.get_context_length())</span><br><span class="line">print(empty_book.get_welcome(<span class="string">'indeed nothing'</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">########## 输出 ##########</span></span><br><span class="line"></span><br><span class="line">init function called</span><br><span class="line"><span class="number">7</span></span><br><span class="line">Welcome! The context <span class="keyword">for</span> this book <span class="keyword">is</span> indeed nothing.</span><br></pre></td></tr></table></figure>
+<p>WELCOME_STR 为类常量，类中使用 self.WELCOME_STR ，或者在类外使用Document.WELCOME_STR来表达这个字符串。</p>
+<p><strong>静态函数</strong>与类没有什么关联，最明显的特征便是，静态函数的第一参数没有任何特殊性，静态函数中只能访问类中的常量或其他静态函数。一般而言，静态函数可以用来做一些简单独立的任务，既方便测试，也能优化代码结构。</p>
+<p><strong>类函数</strong>的第一个参数一般为 cls，表示必须传一个类进来，cls是一个持有<em>类本身</em>的对象。类函数最常用的功能是实现不同的<strong>init</strong> 构造函数，比如上文代码中，我们使用 create_empty_book 类函数，来创造新的书籍对象，其 context 一定为 ‘nothing’。通过类函数，可以实现多个构造函数。</p>
+<p><strong>进一步说明类函数与静态函数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span><span class="params">(object)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, day=<span class="number">0</span>, month=<span class="number">0</span>, year=<span class="number">0</span>)</span>:</span></span><br><span class="line">        self.day = day</span><br><span class="line">        self.month = month</span><br><span class="line">        self.year = year</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_string</span><span class="params">(cls, date_as_string)</span>:</span></span><br><span class="line">        day, month, year = map(int, date_as_string.split(<span class="string">'-'</span>))</span><br><span class="line">        date1 = cls(day, month, year)</span><br><span class="line">        <span class="keyword">return</span> date1</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_date_valid</span><span class="params">(date_as_string)</span>:</span></span><br><span class="line">        day, month, year = map(int, date_as_string.split(<span class="string">'-'</span>))</span><br><span class="line">        <span class="keyword">return</span> day &lt;= <span class="number">31</span> <span class="keyword">and</span> month &lt;= <span class="number">12</span> <span class="keyword">and</span> year &lt;= <span class="number">3999</span></span><br><span class="line"></span><br><span class="line">date1 = Date(<span class="number">11</span>,<span class="number">09</span>,<span class="number">2012</span>)</span><br><span class="line">date2 = Date.from_string(<span class="string">'11-09-2012'</span>)</span><br><span class="line">is_date = Date.is_date_valid(<span class="string">'11-09-2012'</span>)</span><br></pre></td></tr></table></figure>
+<p>类函数 Date.from_string 相当于创建了另一个“构造函数”，接受一个字符串。</p>
+<p>假设我们有一个日期字符串，我们想以某种方式验证它，逻辑上讲可以绑定到Date类，但不需要实例化就可使用。此时就可以使用静态函数了，静态函数无法访问类的内容，基本上只是一个函数。</p>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># class Entity(object): 新式类</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Entity</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, object_type)</span>:</span></span><br><span class="line">        print(<span class="string">'parent class init called'</span>)</span><br><span class="line">        self.object_type = object_type</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_context_length</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">raise</span> Exception(<span class="string">'get_context_length not implemented'</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">print_title</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(self.title)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Document</span><span class="params">(Entity)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, title, author, context)</span>:</span></span><br><span class="line">        print(<span class="string">'Document class init called'</span>)</span><br><span class="line">        <span class="comment"># super(Document, self).__init__('document') 新式类</span></span><br><span class="line">        Entity.__init__(self, <span class="string">'document'</span>)</span><br><span class="line">        self.title = title</span><br><span class="line">        self.author = author</span><br><span class="line">        self.__context = context</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_context_length</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> len(self.__context)</span><br><span class="line">    </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Video</span><span class="params">(Entity)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, title, author, video_length)</span>:</span></span><br><span class="line">        print(<span class="string">'Video class init called'</span>)</span><br><span class="line">        <span class="comment"># super(Video, self).__init__('video') 新式类</span></span><br><span class="line">        Entity.__init__(self, <span class="string">'video'</span>)</span><br><span class="line">        self.title = title</span><br><span class="line">        self.author = author</span><br><span class="line">        self.__video_length = video_length</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_context_length</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.__video_length</span><br><span class="line"></span><br><span class="line">harry_potter_book = Document(<span class="string">'Harry Potter(Book)'</span>, <span class="string">'J. K. Rowling'</span>, <span class="string">'... Forever Do not believe any thing is capable of thinking independently ...'</span>)</span><br><span class="line">harry_potter_movie = Video(<span class="string">'Harry Potter(Movie)'</span>, <span class="string">'J. K. Rowling'</span>, <span class="number">120</span>)</span><br><span class="line"></span><br><span class="line">print(harry_potter_book.object_type)</span><br><span class="line">print(harry_potter_movie.object_type)</span><br><span class="line"></span><br><span class="line">harry_potter_book.print_title()</span><br><span class="line">harry_potter_movie.print_title()</span><br><span class="line"></span><br><span class="line">print(harry_potter_book.get_context_length())</span><br><span class="line">print(harry_potter_movie.get_context_length())</span><br><span class="line"></span><br><span class="line"><span class="comment">########## 输出 ##########</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Document class init called</span></span><br><span class="line"><span class="comment"># parent class init called</span></span><br><span class="line"><span class="comment"># Video class init called</span></span><br><span class="line"><span class="comment"># parent class init called</span></span><br><span class="line"><span class="comment"># document</span></span><br><span class="line"><span class="comment"># video</span></span><br><span class="line"><span class="comment"># Harry Potter(Book)</span></span><br><span class="line"><span class="comment"># Harry Potter(Movie)</span></span><br><span class="line"><span class="comment"># 77</span></span><br><span class="line"><span class="comment"># 120</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong>形如class A(object)为新式类，形如class A()为经典(老式类)定义</p>
+<p>首先需要注意的是构造函数。每个类都有构造函数，继承类在生成对象的时候，是不会自动调用父类的构造函数的，因此你必须在 init() 函数中显式调用父类的构造函数。它们的执行顺序是 子类的构造函数 -&gt; 父类的构造函数。</p>
+<p>其次需要注意父类 get_context_length() 函数。如果使用 Entity 直接生成对象，调用get_context_length() 函数，就会 raise error 中断程序的执行。这其实是一种很好的写法，叫做函数重写，可以使子类必须重新写一遍 get_context_length() 函数，来覆盖掉原有函数。</p>
+<p>最后需要注意到 print_title() 函数，这个函数定义在父类中，但是子类的对象可以毫无阻力地使用它来打印 title，这也就体现了继承的优势：减少重复的代码，降低系统的熵值（即复杂度）。</p>
+<p><strong>关于多重继承</strong></p>
+<p>在Python里，当你新构造一个对象时，有两个步骤：首先是自底向上，从左至右调用<strong>new</strong>，然后再依照递归栈依次调用<strong>init</strong>。这个问题可以用以下代码说明：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">A</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, *argv, **kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">'nA'</span>)</span><br><span class="line">        <span class="keyword">return</span> super().__new__(cls)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, a)</span>:</span></span><br><span class="line">        print(<span class="string">'A'</span>)</span><br><span class="line">        self.a = a</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">comeon</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'A.comeon'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">B</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, *argv, **kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">'nB'</span>)</span><br><span class="line">        <span class="keyword">return</span> super().__new__(cls)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, b)</span>:</span></span><br><span class="line">        super(B, self).__init__(b)</span><br><span class="line">        print(<span class="string">'B'</span>)</span><br><span class="line">        self.b = b</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">comeon</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'B.comeon'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">C</span><span class="params">(A)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, *argv, **kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">'nC'</span>)</span><br><span class="line">        <span class="keyword">return</span> super().__new__(cls)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, c)</span>:</span></span><br><span class="line">        super(C, self).__init__(c)</span><br><span class="line">        print(<span class="string">'C'</span>)</span><br><span class="line">        self.c = c</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">comeon</span><span class="params">(self)</span>:</span></span><br><span class="line">        print(<span class="string">'C.comeon'</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">D</span><span class="params">(B, C)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__new__</span><span class="params">(cls, *argv, **kwargs)</span>:</span></span><br><span class="line">        print(<span class="string">'nD'</span>)</span><br><span class="line">        <span class="keyword">return</span> super().__new__(cls)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, d)</span>:</span></span><br><span class="line">        super(D, self).__init__(d)</span><br><span class="line">        print(<span class="string">'D'</span>)</span><br><span class="line">        self.d = d</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">d = D(<span class="string">'d'</span>)</span><br><span class="line">d.comeon()</span><br><span class="line"></span><br><span class="line"><span class="comment">############输出###########</span></span><br><span class="line">nD</span><br><span class="line">nB</span><br><span class="line">nC</span><br><span class="line">nA</span><br><span class="line">A</span><br><span class="line">C</span><br><span class="line">B</span><br><span class="line">D</span><br><span class="line">B.comeon</span><br></pre></td></tr></table></figure>
+<p>首先看到：d.comeon是从左自右得来的左边的那个B的comeon。那么如何实现这样的效果呢？很简单，让B的init最后一个执行，就能覆盖掉C和D写入的comeon。</p>
+<p>所以实际调用new的顺序就是D–B–C–A，之后递归栈回过头来初始化，调用init的顺序就是A–C–B–D，只有这样才能保证B里的comeon能够覆盖掉A的init带入的comeon和C带入的comeon，同样保证如果你的D里有个comeon，它是最后一个init的，将最后写入而覆盖掉其它的。</p>
+<p><strong>类函数与静态函数的继承</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Foo</span><span class="params">(object)</span>:</span></span><br><span class="line">    X = <span class="number">1</span></span><br><span class="line">    Y = <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">averag</span><span class="params">(*mixes)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> sum(mixes) / len(mixes)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">static_method</span><span class="params">()</span>:</span></span><br><span class="line">        <span class="keyword">return</span> Foo.averag(Foo.X, Foo.Y)</span><br><span class="line"></span><br><span class="line"><span class="meta">    @classmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">class_method</span><span class="params">(cls)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> cls.averag(cls.X, cls.Y)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Son</span><span class="params">(Foo)</span>:</span></span><br><span class="line">    X = <span class="number">3</span></span><br><span class="line">    Y = <span class="number">5</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @staticmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">averag</span><span class="params">(*mixes)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> sum(mixes) / <span class="number">3</span></span><br><span class="line"></span><br><span class="line">p = Son()</span><br><span class="line">print(p.static_method())</span><br><span class="line">print(p.class_method())</span><br><span class="line"></span><br><span class="line"><span class="comment">############输出###########</span></span><br><span class="line"><span class="comment"># 1.5</span></span><br><span class="line"><span class="comment"># 2.6666666666666665</span></span><br></pre></td></tr></table></figure>
+<p>子类的实例继承了父类的static_method静态方法，调用该方法，还是调用的父类的方法和类属性。<br>子类的实例继承了父类的class_method类方法，调用该方法，调用的是子类的方法和子类的类属性。</p>
+<h4 id="抽象类和抽象函数"><a href="#抽象类和抽象函数" class="headerlink" title="抽象类和抽象函数"></a>抽象类和抽象函数</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> abc <span class="keyword">import</span> ABCMeta, abstractmethod</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Entity</span><span class="params">(metaclass=ABCMeta)</span>:</span></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_title</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @abstractmethod</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_title</span><span class="params">(self, title)</span>:</span></span><br><span class="line">        <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Document</span><span class="params">(Entity)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">get_title</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> self.title</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">set_title</span><span class="params">(self, title)</span>:</span></span><br><span class="line">        self.title = title</span><br><span class="line"></span><br><span class="line">document = Document()</span><br><span class="line">document.set_title(<span class="string">'Harry Potter'</span>)</span><br><span class="line">print(document.get_title())</span><br><span class="line"></span><br><span class="line">entity = Entity()</span><br><span class="line"></span><br><span class="line"><span class="comment">########## 输出 ##########</span></span><br><span class="line"></span><br><span class="line">Harry Potter</span><br><span class="line"></span><br><span class="line">---------------------------------------------------------------------------</span><br><span class="line">TypeError                                 Traceback (most recent call last)</span><br><span class="line">&lt;ipython-input<span class="number">-7</span><span class="number">-266</span>b2aa47bad&gt; <span class="keyword">in</span> &lt;module&gt;()</span><br><span class="line">     <span class="number">21</span> print(document.get_title())</span><br><span class="line">     <span class="number">22</span> </span><br><span class="line">---&gt; 23 entity = Entity()</span><br><span class="line">     <span class="number">24</span> entity.set_title(<span class="string">'Test'</span>)</span><br><span class="line"></span><br><span class="line">TypeError: Can<span class="string">'t instantiate abstract class Entity with abstract methods get_title, set_title</span></span><br></pre></td></tr></table></figure>
+<p>Entity是一个抽象类，抽象类是一种特殊的类，它生下来就是作为父类存在的，一旦对象化就会报错。同样，抽象函数定义在抽象类之中，子类必须重写该函数才能使用。相应的抽象函数，则是使用装饰器 @abstractmethod 来表示。</p>
+<p>抽象类就是这么一种存在，它是一种自上而下的设计风范，你只需要用少量的代码描述清楚要做的事情，定义好接口，然后就可以交给不同开发人员去开发和对接。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/python-面向对象，运算符重载，类函数与静态函数，多重继承，抽象类/" rel="tag"># python-面向对象，运算符重载，类函数与静态函数，多重继承，抽象类</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/02/knn-mnist/" rel="next" title="使用tensorflow利用KNN算法对mnist数据集进行分类">
+                <i class="fa fa-chevron-left"></i> 使用tensorflow利用KNN算法对mnist数据集进行分类
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/06/09/pytorch_mnist_fc/" rel="prev" title="pytorch搭建全连接网络识别MNIST数据集">
+                pytorch搭建全连接网络识别MNIST数据集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Macro">
+            
+              <p class="site-author-name" itemprop="name">Macro</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">271</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#面向对象基本概念"><span class="nav-number">1.</span> <span class="nav-text">面向对象基本概念</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#类函数与静态函数"><span class="nav-number">2.</span> <span class="nav-text">类函数与静态函数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#继承"><span class="nav-number">3.</span> <span class="nav-text">继承</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#抽象类和抽象函数"><span class="nav-number">4.</span> <span class="nav-text">抽象类和抽象函数</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Macro</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

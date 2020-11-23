@@ -1,0 +1,1922 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/05/01/leetcode_516/</loc>
+    
+    <lastmod>2020-05-01T09:52:06.389Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/29/leetcode_10/</loc>
+    
+    <lastmod>2020-04-29T13:25:57.242Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/28/leetcode_44/</loc>
+    
+    <lastmod>2020-04-28T13:34:22.188Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/27/leetcode_72/</loc>
+    
+    <lastmod>2020-04-27T13:29:26.544Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/26/leetcode_714/</loc>
+    
+    <lastmod>2020-04-26T02:00:50.662Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/26/leetcode_309/</loc>
+    
+    <lastmod>2020-04-26T01:52:32.330Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/24/leetcode_122_/</loc>
+    
+    <lastmod>2020-04-24T03:21:38.233Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/24/leetcode_123/</loc>
+    
+    <lastmod>2020-04-24T03:21:14.336Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/22/leetcode_121/</loc>
+    
+    <lastmod>2020-04-22T01:57:05.446Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/21/leetcode_213/</loc>
+    
+    <lastmod>2020-04-21T03:45:46.470Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/21/leetcode_198/</loc>
+    
+    <lastmod>2020-04-21T01:28:06.747Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/18/leetcode_354/</loc>
+    
+    <lastmod>2020-04-18T06:31:03.721Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/17/leetcode_887/</loc>
+    
+    <lastmod>2020-04-17T06:41:44.505Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/16/leetcode_152/</loc>
+    
+    <lastmod>2020-04-16T06:24:25.942Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/15/leetcode_53/</loc>
+    
+    <lastmod>2020-04-15T10:17:55.588Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/14/leetcode_120/</loc>
+    
+    <lastmod>2020-04-14T05:51:09.078Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/13/leetcode_1143/</loc>
+    
+    <lastmod>2020-04-13T12:26:17.673Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/04/12/leetcode_300/</loc>
+    
+    <lastmod>2020-04-12T12:55:36.584Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/25/leetcode_122/</loc>
+    
+    <lastmod>2020-03-25T14:18:13.843Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/24/leetcode_99/</loc>
+    
+    <lastmod>2020-03-24T14:27:56.224Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/23/leetcode_95/</loc>
+    
+    <lastmod>2020-03-23T14:33:07.097Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/22/leetcode_94/</loc>
+    
+    <lastmod>2020-03-22T13:02:54.629Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/21/leetcode_104/</loc>
+    
+    <lastmod>2020-03-21T12:37:14.150Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/20/leetcode_101/</loc>
+    
+    <lastmod>2020-03-20T07:24:08.777Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/19/leetcode_100/</loc>
+    
+    <lastmod>2020-03-19T07:40:01.843Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/17/leetcode_5/</loc>
+    
+    <lastmod>2020-03-17T14:53:24.466Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/16/leetcode_3/</loc>
+    
+    <lastmod>2020-03-16T14:52:15.540Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/15/leetcode_20/</loc>
+    
+    <lastmod>2020-03-15T07:07:46.789Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/14/leetcode_14/</loc>
+    
+    <lastmod>2020-03-14T14:51:07.276Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/13/leetcode_13/</loc>
+    
+    <lastmod>2020-03-13T07:49:16.340Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/12/leetcode_23/</loc>
+    
+    <lastmod>2020-03-12T14:47:16.245Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/11/leetcode_19/</loc>
+    
+    <lastmod>2020-03-11T15:00:41.048Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/10/leetcode_2/</loc>
+    
+    <lastmod>2020-03-10T11:58:26.064Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/09/leetcode_141/</loc>
+    
+    <lastmod>2020-03-09T13:03:40.488Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/08/leetcode_83/</loc>
+    
+    <lastmod>2020-03-08T13:08:37.133Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/07/leetcode_21/</loc>
+    
+    <lastmod>2020-03-07T10:57:42.131Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/05/leetcode_16/</loc>
+    
+    <lastmod>2020-03-05T14:48:09.244Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/04/leetcode_15/</loc>
+    
+    <lastmod>2020-03-04T14:39:38.884Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/03/leetcode_27/</loc>
+    
+    <lastmod>2020-03-03T15:36:56.490Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/02/leetcode_26/</loc>
+    
+    <lastmod>2020-03-02T13:12:33.704Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/03/01/leetcode-1/</loc>
+    
+    <lastmod>2020-03-01T11:51:56.031Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2020/02/26/pytorch_seed/</loc>
+    
+    <lastmod>2020-02-26T03:15:14.182Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/12/29/kmeans/</loc>
+    
+    <lastmod>2019-12-29T15:23:25.572Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/12/22/binarySearch/</loc>
+    
+    <lastmod>2019-12-22T11:50:24.800Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/10/09/Decision_tree/</loc>
+    
+    <lastmod>2019-12-18T12:35:29.417Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/11/22/docker_based_use/</loc>
+    
+    <lastmod>2019-12-18T08:11:12.890Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/12/12/LogisticRegression/</loc>
+    
+    <lastmod>2019-12-12T06:58:40.451Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/12/11/Polynomial_regression/</loc>
+    
+    <lastmod>2019-12-11T12:32:36.528Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/12/07/LinearRegression_gd/</loc>
+    
+    <lastmod>2019-12-07T11:52:17.891Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/12/03/python_timer/</loc>
+    
+    <lastmod>2019-12-03T11:55:08.183Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/12/01/LinearRegression/</loc>
+    
+    <lastmod>2019-12-01T15:26:51.012Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/11/24/preprocessing_sklearn/</loc>
+    
+    <lastmod>2019-11-24T15:04:11.075Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/11/15/ml_metrics/</loc>
+    
+    <lastmod>2019-11-15T14:07:40.490Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/11/05/knn/</loc>
+    
+    <lastmod>2019-11-05T14:48:01.112Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/11/02/rtf_adjust_parameter/</loc>
+    
+    <lastmod>2019-11-02T09:43:32.683Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/11/02/rtf_missing_value/</loc>
+    
+    <lastmod>2019-11-02T08:33:45.207Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/08/16/Faster%20R-CNN/</loc>
+    
+    <lastmod>2019-10-17T08:30:46.193Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/10/03/Fast-RCNN/</loc>
+    
+    <lastmod>2019-10-03T07:14:49.867Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/10/03/RCNN/</loc>
+    
+    <lastmod>2019-10-03T05:31:53.114Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/10/03/SPPNet/</loc>
+    
+    <lastmod>2019-10-03T04:24:16.285Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/09/28/python_typing/</loc>
+    
+    <lastmod>2019-09-28T02:27:16.347Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/09/18/python_closure/</loc>
+    
+    <lastmod>2019-09-18T03:47:51.952Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/09/15/iterator_and_generator/</loc>
+    
+    <lastmod>2019-09-15T14:59:46.299Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/09/15/list_copy/</loc>
+    
+    <lastmod>2019-09-15T11:06:25.321Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/09/14/linux_axel/</loc>
+    
+    <lastmod>2019-09-14T05:30:12.923Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/09/13/cascade_rcnn/</loc>
+    
+    <lastmod>2019-09-13T13:51:35.095Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/09/08/yolo_v3/</loc>
+    
+    <lastmod>2019-09-08T07:18:55.376Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/09/01/yolo_v2/</loc>
+    
+    <lastmod>2019-09-01T09:20:59.680Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/07/14/cuda_cudnn_version/</loc>
+    
+    <lastmod>2019-08-27T06:07:44.061Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/08/25/yolo_v1/</loc>
+    
+    <lastmod>2019-08-25T15:58:34.075Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/08/25/FPN_paper/</loc>
+    
+    <lastmod>2019-08-25T05:06:57.362Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/08/22/vscode-import-module-problem/</loc>
+    
+    <lastmod>2019-08-22T09:12:23.885Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/07/14/vscode_remote_ssh/</loc>
+    
+    <lastmod>2019-08-22T08:50:14.274Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/08/12/jupyter_use_virtual/</loc>
+    
+    <lastmod>2019-08-12T11:07:59.527Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2018/11/29/installAnaconda/</loc>
+    
+    <lastmod>2019-08-06T12:45:25.353Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/22/pytorch_torchsummary/</loc>
+    
+    <lastmod>2019-06-22T03:11:42.206Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/17/pytorch_tricks_init_L1L2/</loc>
+    
+    <lastmod>2019-06-16T16:40:49.758Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/16/pytorch_tensorwatch/</loc>
+    
+    <lastmod>2019-06-16T10:03:01.747Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/16/pytorch_trans_learning/</loc>
+    
+    <lastmod>2019-06-16T10:00:00.129Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/11/matplotlib-dynamic_update/</loc>
+    
+    <lastmod>2019-06-11T14:48:56.939Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/11/matplotlib-animation/</loc>
+    
+    <lastmod>2019-06-11T08:40:13.472Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/11/matplotlib-secondary_axis/</loc>
+    
+    <lastmod>2019-06-11T08:11:05.634Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/11/matplotlib-plot_in_plot/</loc>
+    
+    <lastmod>2019-06-11T08:02:14.739Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/11/matplotlib-grid_subplot/</loc>
+    
+    <lastmod>2019-06-11T07:48:01.093Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/11/matplotlib-subplot/</loc>
+    
+    <lastmod>2019-06-11T07:14:51.133Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/11/matplotlib-3d/</loc>
+    
+    <lastmod>2019-06-11T07:06:30.365Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/10/matplotlib-image/</loc>
+    
+    <lastmod>2019-06-10T09:07:34.580Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/10/matplotlib-bar/</loc>
+    
+    <lastmod>2019-06-10T08:52:46.583Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/10/matplotlib-scatter/</loc>
+    
+    <lastmod>2019-06-10T08:40:42.479Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/10/matplotlib-tick_visibility/</loc>
+    
+    <lastmod>2019-06-10T08:21:24.644Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/10/matplotlib-annotation/</loc>
+    
+    <lastmod>2019-06-10T07:59:13.201Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/10/matplotlib-legend/</loc>
+    
+    <lastmod>2019-06-10T02:54:42.905Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/10/matplotlib-figure/</loc>
+    
+    <lastmod>2019-06-10T02:43:45.585Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/10/matplotlib-ax_setting_2/</loc>
+    
+    <lastmod>2019-06-10T02:43:32.787Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/10/matplotlib-ax_setting_1/</loc>
+    
+    <lastmod>2019-06-10T02:43:25.996Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/09/pytorch_mnist_fc/</loc>
+    
+    <lastmod>2019-06-09T11:14:26.249Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/09/pytorch_resnet_cifar10/</loc>
+    
+    <lastmod>2019-06-09T11:13:07.613Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/09/pytorch_mnist_cnn/</loc>
+    
+    <lastmod>2019-06-09T11:11:56.710Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/03/python-oo/</loc>
+    
+    <lastmod>2019-06-06T08:49:15.317Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/31/opencv-137/</loc>
+    
+    <lastmod>2019-06-02T14:08:27.068Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/31/opencv-136/</loc>
+    
+    <lastmod>2019-06-02T12:55:52.488Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/02/knn-mnist/</loc>
+    
+    <lastmod>2019-06-02T09:47:05.953Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/02/net_train_attention/</loc>
+    
+    <lastmod>2019-06-02T09:15:00.752Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/01/python_lambda_map_reduce_filter/</loc>
+    
+    <lastmod>2019-06-01T11:20:16.297Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/06/01/python_function/</loc>
+    
+    <lastmod>2019-06-01T02:36:32.695Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/29/opencv-135/</loc>
+    
+    <lastmod>2019-05-31T03:01:18.658Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/29/opencv-134/</loc>
+    
+    <lastmod>2019-05-31T02:19:12.093Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/29/opencv-133/</loc>
+    
+    <lastmod>2019-05-30T12:29:21.502Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/29/opencv-132/</loc>
+    
+    <lastmod>2019-05-30T08:06:23.363Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/29/opencv-131/</loc>
+    
+    <lastmod>2019-05-30T07:19:06.333Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/26/opencv-130/</loc>
+    
+    <lastmod>2019-05-29T01:43:03.820Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/07/keras_binary_classification/</loc>
+    
+    <lastmod>2019-05-28T13:18:46.199Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/26/opencv-128/</loc>
+    
+    <lastmod>2019-05-27T04:17:20.326Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/26/opencv-127/</loc>
+    
+    <lastmod>2019-05-27T03:10:08.544Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/26/opencv-126/</loc>
+    
+    <lastmod>2019-05-27T02:58:19.280Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/26/opencv-125/</loc>
+    
+    <lastmod>2019-05-26T08:32:33.272Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/25/opencv-124/</loc>
+    
+    <lastmod>2019-05-26T08:16:43.235Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/25/opencv-123/</loc>
+    
+    <lastmod>2019-05-26T07:46:05.471Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/25/opencv-122/</loc>
+    
+    <lastmod>2019-05-26T07:44:33.331Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/25/opencv-121/</loc>
+    
+    <lastmod>2019-05-26T06:51:55.284Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/25/opencv-120/</loc>
+    
+    <lastmod>2019-05-25T08:48:45.372Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/25/opencv-119/</loc>
+    
+    <lastmod>2019-05-25T08:19:58.429Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/25/opencv-118/</loc>
+    
+    <lastmod>2019-05-25T07:38:25.463Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/25/opencv-117/</loc>
+    
+    <lastmod>2019-05-25T07:12:14.348Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/25/opencv-116/</loc>
+    
+    <lastmod>2019-05-25T06:50:41.457Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/24/opencv-115/</loc>
+    
+    <lastmod>2019-05-24T15:29:29.146Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/24/opencv-114/</loc>
+    
+    <lastmod>2019-05-24T09:30:33.918Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/24/opencv-113/</loc>
+    
+    <lastmod>2019-05-24T07:54:24.967Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/24/opencv-112/</loc>
+    
+    <lastmod>2019-05-24T07:15:24.936Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/24/python_list_generation/</loc>
+    
+    <lastmod>2019-05-24T06:11:55.486Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/22/opencv-109/</loc>
+    
+    <lastmod>2019-05-24T05:39:00.621Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/23/opencv-111/</loc>
+    
+    <lastmod>2019-05-23T08:12:10.067Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/22/opencv-110/</loc>
+    
+    <lastmod>2019-05-23T07:27:36.941Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/22/opencv-108/</loc>
+    
+    <lastmod>2019-05-23T06:23:41.332Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/21/opencv-107/</loc>
+    
+    <lastmod>2019-05-22T13:22:04.174Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/21/opencv-106/</loc>
+    
+    <lastmod>2019-05-22T13:07:06.342Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/21/opencv-105/</loc>
+    
+    <lastmod>2019-05-22T11:12:42.561Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/21/opencv-104/</loc>
+    
+    <lastmod>2019-05-21T14:52:29.626Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/21/opencv-103/</loc>
+    
+    <lastmod>2019-05-21T13:21:03.856Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/21/opencv-102/</loc>
+    
+    <lastmod>2019-05-21T07:56:23.598Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/16/opencv-099/</loc>
+    
+    <lastmod>2019-05-21T07:16:31.917Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/17/opencv-101/</loc>
+    
+    <lastmod>2019-05-21T07:16:09.622Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/16/opencv-100/</loc>
+    
+    <lastmod>2019-05-17T08:53:59.766Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/16/opencv-098/</loc>
+    
+    <lastmod>2019-05-16T12:59:33.518Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/20/opencv-001/</loc>
+    
+    <lastmod>2019-05-15T09:42:50.073Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/10/opencv-097/</loc>
+    
+    <lastmod>2019-05-11T13:23:09.706Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/10/opencv-096/</loc>
+    
+    <lastmod>2019-05-11T09:02:01.664Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/10/opencv-095/</loc>
+    
+    <lastmod>2019-05-11T08:48:57.358Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/09/opencv-094/</loc>
+    
+    <lastmod>2019-05-11T06:47:46.758Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/09/opencv-093/</loc>
+    
+    <lastmod>2019-05-10T02:12:16.916Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/09/opencv-092/</loc>
+    
+    <lastmod>2019-05-10T01:37:05.560Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/09/opencv-091/</loc>
+    
+    <lastmod>2019-05-10T01:30:14.339Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/08/opencv-090/</loc>
+    
+    <lastmod>2019-05-09T02:42:23.539Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/08/opencv-089/</loc>
+    
+    <lastmod>2019-05-09T02:10:30.868Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/08/opencv-088/</loc>
+    
+    <lastmod>2019-05-08T13:42:27.194Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/08/opencv-087/</loc>
+    
+    <lastmod>2019-05-08T12:17:01.406Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/06/opencv-086/</loc>
+    
+    <lastmod>2019-05-08T03:19:02.214Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/06/opencv-085/</loc>
+    
+    <lastmod>2019-05-08T02:37:22.554Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/26/opencv-084/</loc>
+    
+    <lastmod>2019-05-07T13:42:08.531Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/26/opencv-083/</loc>
+    
+    <lastmod>2019-05-06T06:25:30.303Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/26/opencv-082/</loc>
+    
+    <lastmod>2019-05-06T02:37:54.518Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/26/opencv-081/</loc>
+    
+    <lastmod>2019-05-06T02:06:43.795Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/05/linux_monitor_gpu/</loc>
+    
+    <lastmod>2019-05-05T09:11:44.302Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/05/05/pycharm_remote_configure/</loc>
+    
+    <lastmod>2019-05-05T09:07:17.166Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2018/11/29/remoteJupyter/</loc>
+    
+    <lastmod>2019-04-27T12:50:48.822Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/24/opencv-080/</loc>
+    
+    <lastmod>2019-04-26T07:22:49.286Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/24/opencv-079/</loc>
+    
+    <lastmod>2019-04-26T07:03:03.598Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/24/opencv-078/</loc>
+    
+    <lastmod>2019-04-25T12:47:51.667Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/24/opencv-077/</loc>
+    
+    <lastmod>2019-04-25T12:23:39.046Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/23/opencv-076/</loc>
+    
+    <lastmod>2019-04-24T13:30:44.456Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/23/opencv-075/</loc>
+    
+    <lastmod>2019-04-24T07:44:47.531Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/23/opencv-074/</loc>
+    
+    <lastmod>2019-04-24T06:13:28.101Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/22/opencv-073/</loc>
+    
+    <lastmod>2019-04-23T15:10:11.929Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/22/opencv-072/</loc>
+    
+    <lastmod>2019-04-23T15:05:58.171Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/22/opencv-071/</loc>
+    
+    <lastmod>2019-04-23T13:43:08.485Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/21/opencv-070/</loc>
+    
+    <lastmod>2019-04-22T09:10:31.390Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/21/opencv-069/</loc>
+    
+    <lastmod>2019-04-22T08:51:56.420Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/21/opencv-068/</loc>
+    
+    <lastmod>2019-04-22T08:33:23.886Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/21/opencv-067/</loc>
+    
+    <lastmod>2019-04-22T03:32:44.191Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/20/opencv-066/</loc>
+    
+    <lastmod>2019-04-21T14:14:12.798Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/20/opencv-065/</loc>
+    
+    <lastmod>2019-04-21T13:01:56.186Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/20/opencv-064/</loc>
+    
+    <lastmod>2019-04-21T12:33:08.342Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/19/opencv-063/</loc>
+    
+    <lastmod>2019-04-20T09:04:38.698Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/19/opencv-061/</loc>
+    
+    <lastmod>2019-04-20T09:00:07.376Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/19/opencv-062/</loc>
+    
+    <lastmod>2019-04-20T08:59:51.964Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/18/opencv-060/</loc>
+    
+    <lastmod>2019-04-19T07:36:15.548Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/18/opencv-059/</loc>
+    
+    <lastmod>2019-04-19T07:18:21.531Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/18/opencv-058/</loc>
+    
+    <lastmod>2019-04-19T06:12:02.571Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/18/opencv-057/</loc>
+    
+    <lastmod>2019-04-19T01:17:48.963Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/17/linux_python_env/</loc>
+    
+    <lastmod>2019-04-18T13:26:15.084Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/18/terminal_run_python/</loc>
+    
+    <lastmod>2019-04-18T13:14:29.835Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/18/pyenv/</loc>
+    
+    <lastmod>2019-04-18T12:52:58.222Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/03/AutoEncoder/</loc>
+    
+    <lastmod>2019-04-18T12:48:13.736Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/03/DenoiseAutoEncoder/</loc>
+    
+    <lastmod>2019-04-18T12:47:29.716Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/18/tensorflow_image_process/</loc>
+    
+    <lastmod>2019-04-18T12:46:56.307Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/17/opencv-056/</loc>
+    
+    <lastmod>2019-04-18T08:31:29.146Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/17/opencv-055/</loc>
+    
+    <lastmod>2019-04-18T08:02:44.782Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/17/opencv-054/</loc>
+    
+    <lastmod>2019-04-18T07:42:07.282Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/16/opencv-053/</loc>
+    
+    <lastmod>2019-04-17T01:56:31.499Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/16/opencv-052/</loc>
+    
+    <lastmod>2019-04-17T00:45:30.361Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/16/opencv-051/</loc>
+    
+    <lastmod>2019-04-17T00:25:32.150Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/15/opencv-050/</loc>
+    
+    <lastmod>2019-04-16T09:13:56.394Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/15/opencv-049/</loc>
+    
+    <lastmod>2019-04-16T08:55:32.911Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/15/opencv-048/</loc>
+    
+    <lastmod>2019-04-16T03:56:51.143Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/16/keras_multiple_input_output/</loc>
+    
+    <lastmod>2019-04-16T03:22:40.614Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/16/keras_inception/</loc>
+    
+    <lastmod>2019-04-16T01:59:49.137Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/15/opencv-047/</loc>
+    
+    <lastmod>2019-04-16T00:54:53.564Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/14/opencv-046/</loc>
+    
+    <lastmod>2019-04-15T01:31:57.861Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/14/opencv-045/</loc>
+    
+    <lastmod>2019-04-15T00:52:36.540Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/14/opencv-044/</loc>
+    
+    <lastmod>2019-04-15T00:31:04.419Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/14/opencv-043/</loc>
+    
+    <lastmod>2019-04-14T08:39:24.446Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/13/opencv-042/</loc>
+    
+    <lastmod>2019-04-14T05:25:48.302Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/13/opencv-041/</loc>
+    
+    <lastmod>2019-04-14T04:25:06.915Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/12/opencv-040/</loc>
+    
+    <lastmod>2019-04-13T06:20:48.432Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/12/opencv-039/</loc>
+    
+    <lastmod>2019-04-13T05:54:46.760Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/11/opencv-038/</loc>
+    
+    <lastmod>2019-04-12T08:34:33.856Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/11/opencv-037/</loc>
+    
+    <lastmod>2019-04-12T04:14:53.162Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/10/opencv-036/</loc>
+    
+    <lastmod>2019-04-11T08:41:22.412Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/10/opencv-035/</loc>
+    
+    <lastmod>2019-04-11T08:14:43.055Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/09/opencv-034/</loc>
+    
+    <lastmod>2019-04-10T02:43:24.505Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/09/opencv-033/</loc>
+    
+    <lastmod>2019-04-10T02:30:29.604Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/09/opencv-032/</loc>
+    
+    <lastmod>2019-04-09T14:05:17.003Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/09/opencv-031/</loc>
+    
+    <lastmod>2019-04-09T13:41:09.639Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/09/opencv-030/</loc>
+    
+    <lastmod>2019-04-09T05:11:20.577Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/09/Clion_opencv_undefined_reference_to/</loc>
+    
+    <lastmod>2019-04-09T04:09:03.474Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/08/opencv-029/</loc>
+    
+    <lastmod>2019-04-08T15:21:16.688Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/07/opencv-028/</loc>
+    
+    <lastmod>2019-04-08T12:33:36.350Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/07/opencv-027/</loc>
+    
+    <lastmod>2019-04-07T14:34:21.616Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/06/opencv-026/</loc>
+    
+    <lastmod>2019-04-06T06:25:35.839Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/04/opencv-025/</loc>
+    
+    <lastmod>2019-04-06T06:13:49.112Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/05/tanchishe/</loc>
+    
+    <lastmod>2019-04-05T14:17:30.718Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/03/opencv-024/</loc>
+    
+    <lastmod>2019-04-03T12:13:15.738Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/03/opencv-023/</loc>
+    
+    <lastmod>2019-04-03T11:31:01.443Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/02/opencv-022/</loc>
+    
+    <lastmod>2019-04-02T11:40:10.971Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/01/opencv-021/</loc>
+    
+    <lastmod>2019-04-02T09:17:07.048Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/30/opencv-020/</loc>
+    
+    <lastmod>2019-04-01T11:54:17.949Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/30/opencv-019/</loc>
+    
+    <lastmod>2019-04-01T07:16:35.276Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/04/01/numpy_None/</loc>
+    
+    <lastmod>2019-04-01T02:23:32.955Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/29/opencv-018/</loc>
+    
+    <lastmod>2019-03-29T09:50:10.662Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/28/opencv-017/</loc>
+    
+    <lastmod>2019-03-29T08:54:36.993Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/28/opencv-015/</loc>
+    
+    <lastmod>2019-03-28T13:56:55.922Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/28/opencv-016/</loc>
+    
+    <lastmod>2019-03-28T13:52:15.372Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/27/opencv-014/</loc>
+    
+    <lastmod>2019-03-27T13:36:40.533Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/27/opencv-013/</loc>
+    
+    <lastmod>2019-03-27T12:40:11.271Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/26/opencv-012/</loc>
+    
+    <lastmod>2019-03-26T14:23:40.355Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/25/opencv-011/</loc>
+    
+    <lastmod>2019-03-26T13:43:34.702Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/22/cifar10/</loc>
+    
+    <lastmod>2019-03-26T03:03:29.954Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/25/opencv-010/</loc>
+    
+    <lastmod>2019-03-25T12:23:51.512Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/25/opencv-009/</loc>
+    
+    <lastmod>2019-03-25T09:09:59.361Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/24/opencv-008/</loc>
+    
+    <lastmod>2019-03-24T12:00:34.262Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/24/opencv-007/</loc>
+    
+    <lastmod>2019-03-24T09:21:56.246Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/24/get_faked_data/</loc>
+    
+    <lastmod>2019-03-24T02:41:21.408Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/23/opencv-006/</loc>
+    
+    <lastmod>2019-03-23T11:28:17.892Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/23/opencv-005/</loc>
+    
+    <lastmod>2019-03-23T11:27:47.591Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/21/opencv-004/</loc>
+    
+    <lastmod>2019-03-22T08:19:24.120Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/21/opencv-003/</loc>
+    
+    <lastmod>2019-03-21T14:38:21.590Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/20/opencv-002/</loc>
+    
+    <lastmod>2019-03-21T14:38:13.759Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/20/Clion_path_problem/</loc>
+    
+    <lastmod>2019-03-20T09:07:21.220Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/19/opencv_Clion/</loc>
+    
+    <lastmod>2019-03-19T06:24:47.336Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/19/opencv_vs2017/</loc>
+    
+    <lastmod>2019-03-19T06:22:49.969Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/19/opencv_python/</loc>
+    
+    <lastmod>2019-03-19T06:20:08.343Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/19/pip_windows_aliyun/</loc>
+    
+    <lastmod>2019-03-19T06:19:06.353Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2018/11/29/writeArtical/</loc>
+    
+    <lastmod>2019-03-03T10:36:33.005Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/02/mnistCNN/</loc>
+    
+    <lastmod>2019-03-02T16:04:47.731Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/02/mnistLinearNN/</loc>
+    
+    <lastmod>2019-03-02T16:04:17.785Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2018/12/29/faceDetection/</loc>
+    
+    <lastmod>2019-03-02T08:01:12.151Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2019/03/02/jupyterPlugin/</loc>
+    
+    <lastmod>2019-03-02T07:48:06.156Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2018/12/08/linux-screen/</loc>
+    
+    <lastmod>2018-12-08T15:03:56.175Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2018/12/08/linux-kill-process/</loc>
+    
+    <lastmod>2018-12-08T14:50:23.904Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2018/11/29/addLinuxUser/</loc>
+    
+    <lastmod>2018-11-29T15:24:55.338Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/tags/index.html</loc>
+    
+    <lastmod>2018-11-29T08:57:43.507Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/2018/11/29/beautifyBash/</loc>
+    
+    <lastmod>2018-11-29T08:43:35.240Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/categories/index.html</loc>
+    
+    <lastmod>2018-11-04T08:48:39.249Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://macrozhang.github.io/about/index.html</loc>
+    
+    <lastmod>2018-10-28T07:53:15.745Z</lastmod>
+    
+  </url>
+  
+</urlset>

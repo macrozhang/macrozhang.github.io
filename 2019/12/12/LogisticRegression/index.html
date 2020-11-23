@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="-rILxxxxx7gbfxxxxx-E1VWxxxxxTcq6pxgs_xxxxx">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="逻辑回归,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="原理及相关参考资料 出场率No.1的逻辑回归算法，是怎样“炼成”的？ 逻辑回归的本质及其损失函数的推导、求解 逻辑回归代码实现与调用 逻辑回归的决策边界及多项式 sklearn中的逻辑回归中及正则化 一文详尽系列之逻辑回归 简单易懂的softmax交叉熵损失函数求导 Logistics到softmax推导整理  逻辑回归的实现LogisticRegression.py 12345678910111">
+<meta name="keywords" content="逻辑回归">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python实现逻辑回归">
+<meta property="og:url" content="https://macrozhang.github.io/2019/12/12/LogisticRegression/index.html">
+<meta property="og:site_name" content="Macro">
+<meta property="og:description" content="原理及相关参考资料 出场率No.1的逻辑回归算法，是怎样“炼成”的？ 逻辑回归的本质及其损失函数的推导、求解 逻辑回归代码实现与调用 逻辑回归的决策边界及多项式 sklearn中的逻辑回归中及正则化 一文详尽系列之逻辑回归 简单易懂的softmax交叉熵损失函数求导 Logistics到softmax推导整理  逻辑回归的实现LogisticRegression.py 12345678910111">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g9txy4j9ryj20al072dfq.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g9ty06x6oej20ah070mx5.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g9ty1q4bq7j20aj076dfs.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g9ty42lrvej20ae072dft.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g9ty5aknimj20a906y0sp.jpg">
+<meta property="og:updated_time" content="2019-12-12T06:58:40.451Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="python实现逻辑回归">
+<meta name="twitter:description" content="原理及相关参考资料 出场率No.1的逻辑回归算法，是怎样“炼成”的？ 逻辑回归的本质及其损失函数的推导、求解 逻辑回归代码实现与调用 逻辑回归的决策边界及多项式 sklearn中的逻辑回归中及正则化 一文详尽系列之逻辑回归 简单易懂的softmax交叉熵损失函数求导 Logistics到softmax推导整理  逻辑回归的实现LogisticRegression.py 12345678910111">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g9txy4j9ryj20al072dfq.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://macrozhang.github.io/2019/12/12/LogisticRegression/">
+
+
+<meta name="google-site-verification" content="UEyEKq1HPEEwvXN8IKUs4MWiU4oNmSsZ49YysJ45u7M">
+
+
+
+  <title>python实现逻辑回归 | Macro</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Macro</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://macrozhang.github.io/2019/12/12/LogisticRegression/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Macro">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Macro">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">python实现逻辑回归</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-12-12T14:42:27+08:00">
+                2019-12-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ML-DL/" itemprop="url" rel="index">
+                    <span itemprop="name">ML/DL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="原理及相关参考资料"><a href="#原理及相关参考资料" class="headerlink" title="原理及相关参考资料"></a>原理及相关参考资料</h4><ul>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI4MjkzNTUxMw==&amp;mid=2247484074&amp;idx=1&amp;sn=25a66eedf3a9e7cb439e157309614f88&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">出场率No.1的逻辑回归算法，是怎样“炼成”的？</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI4MjkzNTUxMw==&amp;mid=2247484100&amp;idx=1&amp;sn=50c9caf07c84135b467305685472f2cc&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">逻辑回归的本质及其损失函数的推导、求解</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI4MjkzNTUxMw==&amp;mid=2247484105&amp;idx=1&amp;sn=7ad5725fc9a2bba86c96ff352924f19e&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">逻辑回归代码实现与调用</a></li>
+<li><a href="https://mp.weixin.qq.com/s?__biz=MzI4MjkzNTUxMw==&amp;mid=2247484138&amp;idx=1&amp;sn=8bbc9f2a4c17a95ea0f11bb2714c38eb&amp;scene=21#wechat_redirect" target="_blank" rel="noopener">逻辑回归的决策边界及多项式</a></li>
+<li><a href="https://mp.weixin.qq.com/s/BUDdj4najgR0QAHhtu8X9A" target="_blank" rel="noopener">sklearn中的逻辑回归中及正则化</a></li>
+<li><a href="https://mp.weixin.qq.com/s/1E7MLGTguXI8SL0_2WXZxQ" target="_blank" rel="noopener">一文详尽系列之逻辑回归</a></li>
+<li><a href="https://blog.csdn.net/qian99/article/details/78046329" target="_blank" rel="noopener">简单易懂的softmax交叉熵损失函数求导</a></li>
+<li><a href="http://alexjiangzy.com/2019/02/13/LogisticsSummary/" target="_blank" rel="noopener">Logistics到softmax推导整理</a></li>
+</ul>
+<h4 id="逻辑回归的实现"><a href="#逻辑回归的实现" class="headerlink" title="逻辑回归的实现"></a>逻辑回归的实现</h4><p>LogisticRegression.py</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LogisticRegression</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        self.b = <span class="keyword">None</span> <span class="comment"># 偏置</span></span><br><span class="line">        self.W = <span class="keyword">None</span> <span class="comment"># 权重</span></span><br><span class="line">        self.b_W = <span class="keyword">None</span> <span class="comment"># b_W = [b, W]</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">_sigmoid</span><span class="params">(self, x)</span>:</span></span><br><span class="line">        <span class="string">"""     sigmoid 函数   """</span></span><br><span class="line">        <span class="keyword">return</span> <span class="number">1.</span> / (<span class="number">1</span> + np.exp(-x))</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit_sgd</span><span class="params">(self, x_trian, y_train, epoch=<span class="number">50</span>, t0=<span class="number">5</span>, t1=<span class="number">50</span>)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        随机梯度下降</span></span><br><span class="line"><span class="string">        :param t0 t1: lr = t0 / (iter + t1) ,iter 为迭代次数</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">lr</span><span class="params">(t)</span>:</span></span><br><span class="line">            <span class="keyword">return</span> t0 / (t + t1)</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">dJ_sgd</span><span class="params">(b_W, X_i, y_train_i)</span>:</span></span><br><span class="line">            <span class="string">""" 求梯度 """</span></span><br><span class="line">            y_hat_i = self._sigmoid(X_i.T.dot(b_W))</span><br><span class="line">            <span class="keyword">return</span> X_i * (y_hat_i - y_train_i)</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">sgd</span><span class="params">(X, y_train, init_b_W, epoch)</span>:</span></span><br><span class="line">            <span class="string">""" 随机梯度下降 """</span></span><br><span class="line">            b_W = init_b_W</span><br><span class="line">            m = len(X)</span><br><span class="line">            <span class="keyword">for</span> iter <span class="keyword">in</span> range(epoch):</span><br><span class="line">                indexes = np.random.permutation(m) <span class="comment"># 打乱顺序</span></span><br><span class="line">                X = X[indexes, :]</span><br><span class="line">                y_train = y_train[indexes]</span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> range(m):</span><br><span class="line">                    gradient = dJ_sgd(b_W, X[i], y_train[i])</span><br><span class="line">                    b_W -= lr(iter * m + i) * gradient</span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> b_W</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        X = np.hstack([np.ones((len(x_trian), <span class="number">1</span>)), x_trian])  <span class="comment"># 完全向量化运算，x_train 第一列添加为1</span></span><br><span class="line">        init_b_W = np.random.randn(X.shape[<span class="number">1</span>])</span><br><span class="line">        self.b_W = sgd(X, y_train, init_b_W, epoch)</span><br><span class="line">        self.b = self.b_W[<span class="number">0</span>]</span><br><span class="line">        self.W = self.b_W[<span class="number">1</span>:]</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit_gd</span><span class="params">(self, x_trian, y_train, lr=<span class="number">0.01</span>, max_iters=<span class="number">1e4</span>, epsilon=<span class="number">1e-8</span>)</span>:</span></span><br><span class="line">        <span class="string">""" 批量梯度下降法求解 """</span></span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">J</span><span class="params">(b_W, X, y_train)</span>:</span></span><br><span class="line">            <span class="string">""" 求损失函数 """</span></span><br><span class="line">            y_hat = self._sigmoid(X.dot(b_W))</span><br><span class="line">            <span class="keyword">try</span>:</span><br><span class="line">                <span class="keyword">return</span> -np.sum(y_train*np.log(y_hat) + (<span class="number">1</span>-y_train)*np.log(<span class="number">1</span>-y_hat)) / len(y_train)</span><br><span class="line">            <span class="keyword">except</span>:</span><br><span class="line">                <span class="keyword">return</span> float(<span class="string">'inf'</span>)</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">dJ</span><span class="params">(b_W, X, y_train)</span>:</span></span><br><span class="line">            <span class="string">""" 求梯度 """</span></span><br><span class="line">            <span class="keyword">return</span> X.T.dot(self._sigmoid(X.dot(b_W)) - y_train) / len(y_train)</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">gradient_descent</span><span class="params">(X, y_train, init_b_W, lr, max_iters, epsilon)</span>:</span></span><br><span class="line">            <span class="string">""" 批量梯度下降 """</span></span><br><span class="line">            b_W = init_b_W</span><br><span class="line">            cur_iter = <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> cur_iter &lt; max_iters:</span><br><span class="line">                gradient = dJ(b_W, X, y_train)</span><br><span class="line">                last_b_W = b_W.copy()</span><br><span class="line">                b_W -= lr * gradient</span><br><span class="line">                <span class="keyword">if</span>(abs(J(b_W, X, y_train) - J(last_b_W, X, y_train)) &lt; epsilon):</span><br><span class="line">                    <span class="keyword">break</span></span><br><span class="line">                cur_iter += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">            <span class="keyword">return</span> b_W</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">        X = np.hstack([np.ones((len(x_trian), <span class="number">1</span>)), x_trian])  <span class="comment"># 完全向量化运算，x_train 第一列添加为1</span></span><br><span class="line">        init_b_W = np.zeros(X.shape[<span class="number">1</span>])</span><br><span class="line">        self.b_W = gradient_descent(X, y_train, init_b_W, lr, max_iters, epsilon)</span><br><span class="line">        self.b = self.b_W[<span class="number">0</span>]</span><br><span class="line">        self.W = self.b_W[<span class="number">1</span>:]</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">fit</span><span class="params">(self, x_trian, y_train, lr=<span class="number">0.01</span>, max_iters=<span class="number">1e4</span>, epsilon=<span class="number">1e-8</span>)</span>:</span></span><br><span class="line">        self.fit_gd(x_trian, y_train, lr=<span class="number">0.01</span>, max_iters=<span class="number">1e4</span>, epsilon=<span class="number">1e-8</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">predict</span><span class="params">(self, x_test)</span>:</span></span><br><span class="line">        X = np.hstack([np.ones((len(x_test), <span class="number">1</span>)), x_test])</span><br><span class="line">        y_proba = self._sigmoid(X.dot(self.b_W))  <span class="comment"># 预测的概率</span></span><br><span class="line">        y_predict = np.array(y_proba &gt;= <span class="number">0.5</span>, dtype=<span class="string">'int'</span>)  <span class="comment"># 预测的类别</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> y_predict</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">score</span><span class="params">(self, x_test, y_test)</span>:</span></span><br><span class="line">        y_predict = self.predict(x_test)</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">acc_score</span><span class="params">(y_test, y_predict)</span>:</span></span><br><span class="line">            <span class="string">"""  计算准确率 """</span></span><br><span class="line">            <span class="keyword">return</span> np.sum(y_test == y_predict) / len(y_test)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> acc_score(y_test, y_predict)</span><br></pre></td></tr></table></figure>
+<h4 id="调用逻辑回归"><a href="#调用逻辑回归" class="headerlink" title="调用逻辑回归"></a>调用逻辑回归</h4><p><strong>导包</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</span><br><span class="line"><span class="keyword">from</span> LogisticRegression <span class="keyword">import</span> LogisticRegression</span><br><span class="line"><span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> PolynomialFeatures</span><br><span class="line"><span class="keyword">from</span> sklearn.pipeline <span class="keyword">import</span> Pipeline</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br></pre></td></tr></table></figure>
+<p><strong>准备数据</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">iris = datasets.load_iris()</span><br><span class="line"></span><br><span class="line">X = iris.data</span><br><span class="line">y = iris.target</span><br><span class="line"></span><br><span class="line"><span class="comment"># 取出其中两个类别、两个特征进行分类</span></span><br><span class="line">indexs = np.argwhere(y &lt; <span class="number">2</span>).squeeze()</span><br><span class="line">X = X[indexs, :<span class="number">2</span>]</span><br><span class="line">y = y[indexs]</span><br><span class="line"></span><br><span class="line">plt.scatter(X[y==<span class="number">0</span>,<span class="number">0</span>], X[y==<span class="number">0</span>,<span class="number">1</span>], color=<span class="string">"red"</span>, label=<span class="string">'0'</span>)</span><br><span class="line">plt.scatter(X[y==<span class="number">1</span>,<span class="number">0</span>], X[y==<span class="number">1</span>,<span class="number">1</span>], color=<span class="string">"blue"</span>, label=<span class="string">'1'</span>)</span><br><span class="line">plt.legend()</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g9txy4j9ryj20al072dfq.jpg" alt="1.png"></p>
+<p><strong>训练及结果展示</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">X_train, X_test, y_train, y_test = train_test_split(X, y, random_state=<span class="number">666</span>)</span><br><span class="line">log_reg = LogisticRegression()</span><br><span class="line">log_reg.fit_gd(X_train, y_train)</span><br><span class="line">log_reg.score(X_test, y_test) <span class="comment"># 1.0</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 画决策边界</span></span><br><span class="line">x1 = np.arange(<span class="number">4</span>, <span class="number">8</span>)</span><br><span class="line">x2 = -(log_reg.W[<span class="number">0</span>]*x1 + log_reg.b)/log_reg.W[<span class="number">1</span>]  <span class="comment"># 决策边界：w1*x1+w2*x2+b=0</span></span><br><span class="line">plt.plot(x1, x2)</span><br><span class="line"></span><br><span class="line">plt.scatter(X[y==<span class="number">0</span>,<span class="number">0</span>], X[y==<span class="number">0</span>,<span class="number">1</span>], color=<span class="string">"red"</span>, label=<span class="string">'0'</span>)</span><br><span class="line">plt.scatter(X[y==<span class="number">1</span>,<span class="number">0</span>], X[y==<span class="number">1</span>,<span class="number">1</span>], color=<span class="string">"blue"</span>, label=<span class="string">'1'</span>)</span><br><span class="line">plt.legend(loc=<span class="string">'upper left'</span>)</span><br><span class="line"></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g9ty06x6oej20ah070mx5.jpg" alt="2.png"></p>
+<h4 id="多项式逻辑回归拟合非线性数据"><a href="#多项式逻辑回归拟合非线性数据" class="headerlink" title="多项式逻辑回归拟合非线性数据"></a>多项式逻辑回归拟合非线性数据</h4><p><strong>准备数据</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">np.random.seed(<span class="number">666</span>)</span><br><span class="line"></span><br><span class="line">X = np.random.normal(<span class="number">0</span>, <span class="number">1</span>, size=(<span class="number">200</span>, <span class="number">2</span>))</span><br><span class="line">y = np.array((X[:,<span class="number">0</span>]**<span class="number">2</span>+X[:,<span class="number">1</span>]**<span class="number">2</span>)&lt;<span class="number">1.5</span>, dtype=<span class="string">'int'</span>)</span><br><span class="line"></span><br><span class="line">plt.scatter(X[y==<span class="number">0</span>,<span class="number">0</span>], X[y==<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line">plt.scatter(X[y==<span class="number">1</span>,<span class="number">0</span>], X[y==<span class="number">1</span>,<span class="number">1</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g9ty1q4bq7j20aj076dfs.jpg" alt="3.png"></p>
+<p><strong>绘制决策边界函数</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">plot_decision_boundary</span><span class="params">(model, axis)</span>:</span></span><br><span class="line">    x0, x1 = np.meshgrid(</span><br><span class="line">        np.linspace(axis[<span class="number">0</span>], axis[<span class="number">1</span>], int((axis[<span class="number">1</span>]-axis[<span class="number">0</span>])*<span class="number">100</span>)).reshape(<span class="number">-1</span>, <span class="number">1</span>),</span><br><span class="line">        np.linspace(axis[<span class="number">2</span>], axis[<span class="number">3</span>], int((axis[<span class="number">3</span>]-axis[<span class="number">2</span>])*<span class="number">100</span>)).reshape(<span class="number">-1</span>, <span class="number">1</span>),</span><br><span class="line">    )</span><br><span class="line">    X_new = np.c_[x0.ravel(), x1.ravel()]</span><br><span class="line">    y_predict = model.predict(X_new)</span><br><span class="line">    zz = y_predict.reshape(x0.shape)</span><br><span class="line">    <span class="keyword">from</span> matplotlib.colors <span class="keyword">import</span> ListedColormap</span><br><span class="line">    custom_cmap = ListedColormap([<span class="string">'#EF9A9A'</span>,<span class="string">'#FFF59D'</span>,<span class="string">'#90CAF9'</span>]) </span><br><span class="line">    plt.contourf(x0, x1, zz, linewidth=<span class="number">5</span>, cmap=custom_cmap)</span><br></pre></td></tr></table></figure>
+<p><strong>逻辑回归拟合</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">log_reg = LogisticRegression()</span><br><span class="line">log_reg.fit_gd(X, y)</span><br><span class="line">log_reg.score(X, y) <span class="comment"># 0.605,欠拟合</span></span><br><span class="line"></span><br><span class="line">plot_decision_boundary(log_reg, axis=[<span class="number">-4</span>, <span class="number">4</span>, <span class="number">-4</span>, <span class="number">4</span>])</span><br><span class="line">plt.scatter(X[y==<span class="number">0</span>,<span class="number">0</span>], X[y==<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line">plt.scatter(X[y==<span class="number">1</span>,<span class="number">0</span>], X[y==<span class="number">1</span>,<span class="number">1</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g9ty42lrvej20ae072dft.jpg" alt="4.png"></p>
+<p><strong>多项式逻辑回归拟合</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 为逻辑回归添加多项式项的管道</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">PolynomialLogisticRegression</span><span class="params">(degree)</span>:</span></span><br><span class="line">    <span class="keyword">return</span> Pipeline([</span><br><span class="line">        (<span class="string">'poly'</span>, PolynomialFeatures(degree=degree)),</span><br><span class="line">        (<span class="string">'std_scaler'</span>, StandardScaler()),</span><br><span class="line">        (<span class="string">'log_reg'</span>, LogisticRegression())</span><br><span class="line">    ])</span><br><span class="line"></span><br><span class="line"><span class="comment"># 使用管道得到对象</span></span><br><span class="line">poly_log_reg = PolynomialLogisticRegression(degree=<span class="number">3</span>)</span><br><span class="line">poly_log_reg.fit(X, y)</span><br><span class="line">poly_log_reg.score(X, y) <span class="comment"># 0.955</span></span><br><span class="line"></span><br><span class="line">plot_decision_boundary(poly_log_reg, axis=[<span class="number">-4</span>, <span class="number">4</span>, <span class="number">-4</span>, <span class="number">4</span>])</span><br><span class="line">plt.scatter(X[y==<span class="number">0</span>,<span class="number">0</span>], X[y==<span class="number">0</span>,<span class="number">1</span>])</span><br><span class="line">plt.scatter(X[y==<span class="number">1</span>,<span class="number">0</span>], X[y==<span class="number">1</span>,<span class="number">1</span>])</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g9ty5aknimj20a906y0sp.jpg" alt="5.png"></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/逻辑回归/" rel="tag"># 逻辑回归</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/11/Polynomial_regression/" rel="next" title="多项式回归拟合非线性数据">
+                <i class="fa fa-chevron-left"></i> 多项式回归拟合非线性数据
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/22/binarySearch/" rel="prev" title="二分查找的几种情况-C++实现">
+                二分查找的几种情况-C++实现 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Macro">
+            
+              <p class="site-author-name" itemprop="name">Macro</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">271</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#原理及相关参考资料"><span class="nav-number">1.</span> <span class="nav-text">原理及相关参考资料</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#逻辑回归的实现"><span class="nav-number">2.</span> <span class="nav-text">逻辑回归的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#调用逻辑回归"><span class="nav-number">3.</span> <span class="nav-text">调用逻辑回归</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多项式逻辑回归拟合非线性数据"><span class="nav-number">4.</span> <span class="nav-text">多项式逻辑回归拟合非线性数据</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Macro</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>

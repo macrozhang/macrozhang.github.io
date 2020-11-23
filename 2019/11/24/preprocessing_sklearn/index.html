@@ -1,0 +1,1156 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta name="google-site-verification" content="-rILxxxxx7gbfxxxxx-E1VWxxxxxTcq6pxgs_xxxxx">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="数据预处理,">
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="数据挖掘流程1. 获取数据2. 数据预处理数据预处理是从数据中检测，纠正或删除损坏，不准确或不适用于模型的记录的过程。可能面对的问题有：数据类型不同，比如有的是文字，有的是数字，有的含时间序列，有的连续，有的间断。也可能，数据的质量不行，有噪声，有异常，有缺失，数据出错，量纲不一，有重复，数据是偏态，数据量太大或太小。数据预处理的目的：让数据适应模型，匹配模型的需求。 3. 特征工程特征工程是将原">
+<meta name="keywords" content="数据预处理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习中的数据预处理">
+<meta property="og:url" content="https://macrozhang.github.io/2019/11/24/preprocessing_sklearn/index.html">
+<meta property="og:site_name" content="Macro">
+<meta property="og:description" content="数据挖掘流程1. 获取数据2. 数据预处理数据预处理是从数据中检测，纠正或删除损坏，不准确或不适用于模型的记录的过程。可能面对的问题有：数据类型不同，比如有的是文字，有的是数字，有的含时间序列，有的连续，有的间断。也可能，数据的质量不行，有噪声，有异常，有缺失，数据出错，量纲不一，有重复，数据是偏态，数据量太大或太小。数据预处理的目的：让数据适应模型，匹配模型的需求。 3. 特征工程特征工程是将原">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g9950bvwzyj20zo0eejtg.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g9942btz5gj20lh0dw74u.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g9946itv8gj20hw0b8jrz.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99fq3vb47j20rc0jajt8.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99fxtel01j20j00idwfi.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99g4wuzvhj210h0d2abi.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99gh31vz5j20ko0b8q3t.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99gpbx8enj20dv036mx1.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99gultu9xj20fg0k0gm0.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99he9dltsj20re0hw400.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99hl9r4ubj20rw0ijgm1.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99hpofvx6j20qn0frn60.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99ie36zsmj20rg0k2dgd.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99ieg9dgzj20gw08h0sr.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99il2vgwvj20jz02ymx3.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99ipqpdeej20pr0gm0t1.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99izxduc5j215z0k37fa.jpg">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g99iykx3fej20qp0ixt96.jpg">
+<meta property="og:updated_time" content="2019-11-24T15:04:11.075Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习中的数据预处理">
+<meta name="twitter:description" content="数据挖掘流程1. 获取数据2. 数据预处理数据预处理是从数据中检测，纠正或删除损坏，不准确或不适用于模型的记录的过程。可能面对的问题有：数据类型不同，比如有的是文字，有的是数字，有的含时间序列，有的连续，有的间断。也可能，数据的质量不行，有噪声，有异常，有缺失，数据出错，量纲不一，有重复，数据是偏态，数据量太大或太小。数据预处理的目的：让数据适应模型，匹配模型的需求。 3. 特征工程特征工程是将原">
+<meta name="twitter:image" content="http://ww1.sinaimg.cn/large/e52819ealy1g9950bvwzyj20zo0eejtg.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://macrozhang.github.io/2019/11/24/preprocessing_sklearn/">
+
+
+<meta name="google-site-verification" content="UEyEKq1HPEEwvXN8IKUs4MWiU4oNmSsZ49YysJ45u7M">
+
+
+
+  <title>机器学习中的数据预处理 | Macro</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope="" itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope="" itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Macro</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br>
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            关于
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope="" itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://macrozhang.github.io/2019/11/24/preprocessing_sklearn/">
+
+    <span hidden itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Macro">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/header.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope="" itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Macro">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">机器学习中的数据预处理</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-24T13:41:50+08:00">
+                2019-11-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope="" itemtype="http://schema.org/Thing">
+                  <a href="/categories/ML-DL/" itemprop="url" rel="index">
+                    <span itemprop="name">ML/DL</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h4 id="数据挖掘流程"><a href="#数据挖掘流程" class="headerlink" title="数据挖掘流程"></a>数据挖掘流程</h4><h5 id="1-获取数据"><a href="#1-获取数据" class="headerlink" title="1. 获取数据"></a>1. 获取数据</h5><h5 id="2-数据预处理"><a href="#2-数据预处理" class="headerlink" title="2. 数据预处理"></a>2. 数据预处理</h5><p>数据预处理是从数据中检测，纠正或删除损坏，不准确或不适用于模型的记录的过程。可能面对的问题有：数据类型不同，比如有的是文字，有的是数字，有的含时间序列，有的连续，有的间断。也可能，数据的质量不行，有噪声，有异常，有缺失，数据出错，量纲不一，有重复，数据是偏态，数据量太大或太小。<br>数据预处理的目的：让数据适应模型，匹配模型的需求。</p>
+<h5 id="3-特征工程"><a href="#3-特征工程" class="headerlink" title="3. 特征工程"></a>3. 特征工程</h5><p>特征工程是将原始数据转换为更能代表预测模型的潜在问题的特征的过程，可以通过挑选最相关的特征，提取特征以及创造特征来实现。其中创造特征又经常以降维算法的方式实现。可能面对的问题有：特征之间有相关性，特征和标签无关，特征太多或太小，或者干脆就无法表现出应有的数据现象或无法展示数据的真实面貌。<br>特征工程的目的： 降低计算成本，提升模型上限。</p>
+<h5 id="4-建模，测试模型并预测结果"><a href="#4-建模，测试模型并预测结果" class="headerlink" title="4. 建模，测试模型并预测结果"></a>4. 建模，测试模型并预测结果</h5><h5 id="5-上线，验证模型效果"><a href="#5-上线，验证模型效果" class="headerlink" title="5. 上线，验证模型效果"></a>5. 上线，验证模型效果</h5><h4 id="sklearn-中的相关模块"><a href="#sklearn-中的相关模块" class="headerlink" title="sklearn 中的相关模块"></a>sklearn 中的相关模块</h4><p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g9950bvwzyj20zo0eejtg.jpg" alt="1.png"></p>
+<p>模块 <code>preprocessing</code> ：几乎包括数据预处理的所有内容</p>
+<p>模块 <code>Impute</code> ：填补缺失值专用</p>
+<p>模块 <code>feature_selection</code> ：包括特征选择的各种方法的实践</p>
+<p>模块 <code>decomposition</code> ：包含降维算法</p>
+<h4 id="数据预处理"><a href="#数据预处理" class="headerlink" title="数据预处理"></a>数据预处理</h4><hr>
+<h4 id="1-数据无量纲化"><a href="#1-数据无量纲化" class="headerlink" title="1. 数据无量纲化"></a>1. 数据无量纲化</h4><p><strong>归一化： $x = \frac{x - min(x)}{max(x)-min(x)} \quad$ </strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g9942btz5gj20lh0dw74u.jpg" alt="1.png"></p>
+<p><strong>标准化：$x = \frac{x - \mu}{\sigma} \quad$ </strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g9946itv8gj20hw0b8jrz.jpg" alt="1.png"></p>
+<p><strong>注意：</strong> 大多数机器学习算法中，会选择StandardScaler来进行特征缩放，因为MinMaxScaler对异常值非常敏感。在PCA，聚类，逻辑回归，支持向量机，神经网络这些算法中，StandardScaler往往是最好的选择。MinMaxScaler在不涉及距离度量、梯度、协方差计算以及数据需要被压缩到特定区间时使用广泛，比如数字图像处理中量化像素强度时，都会使用MinMaxScaler将数据压缩于[0,1]区间之中。建议先试试看StandardScaler，效果不好换MinMaxScaler 。</p>
+<h4 id="2-缺失值处理"><a href="#2-缺失值处理" class="headerlink" title="2. 缺失值处理"></a>2. 缺失值处理</h4><p><strong>API:</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99fq3vb47j20rc0jajt8.jpg" alt="1.png"></p>
+<p><strong>演示：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99fxtel01j20j00idwfi.jpg" alt="1.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99g4wuzvhj210h0d2abi.jpg" alt="1.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99gh31vz5j20ko0b8q3t.jpg" alt="1.png"></p>
+<h4 id="3-处理分类型特征：编码和哑变量"><a href="#3-处理分类型特征：编码和哑变量" class="headerlink" title="3. 处理分类型特征：编码和哑变量"></a>3. 处理分类型特征：编码和哑变量</h4><h5 id="3-1-处理标签"><a href="#3-1-处理标签" class="headerlink" title="3.1 处理标签"></a>3.1 处理标签</h5><p><strong>API：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99gpbx8enj20dv036mx1.jpg" alt="1.png"></p>
+<p><strong>演示：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99gultu9xj20fg0k0gm0.jpg" alt="1.png"></p>
+<h5 id="3-2-处理分类型特征，非独热编码"><a href="#3-2-处理分类型特征，非独热编码" class="headerlink" title="3.2 处理分类型特征，非独热编码"></a>3.2 处理分类型特征，非独热编码</h5><p><strong>API：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99he9dltsj20re0hw400.jpg" alt="1.png"></p>
+<p><strong>演示：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99hl9r4ubj20rw0ijgm1.jpg" alt="1.png"></p>
+<h5 id="3-3-分类型特征独热编码，创建哑变量"><a href="#3-3-分类型特征独热编码，创建哑变量" class="headerlink" title="3.3 分类型特征独热编码，创建哑变量"></a>3.3 分类型特征独热编码，创建哑变量</h5><p>思考一个问题：在舱门Embarked这一列中，我们使用[0,1,2]代表了三个不同的舱门，然而这种转换是正确的吗 ？</p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99hpofvx6j20qn0frn60.jpg" alt="1.png"></p>
+<p><strong>API：</strong></p>
+<p>链接：<a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.OneHotEncoder.html#sklearn.preprocessing.OneHotEncoder" target="_blank" rel="noopener">OneHotEncoder</a></p>
+<p><strong>演示：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99ie36zsmj20rg0k2dgd.jpg" alt="1.png"></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99ieg9dgzj20gw08h0sr.jpg" alt="1.png"></p>
+<h5 id="3-4-处理连续性特征：二值化"><a href="#3-4-处理连续性特征：二值化" class="headerlink" title="3.4 处理连续性特征：二值化"></a>3.4 处理连续性特征：二值化</h5><p><strong>API：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99il2vgwvj20jz02ymx3.jpg" alt="1.png"></p>
+<p><strong>演示：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99ipqpdeej20pr0gm0t1.jpg" alt="1.png"></p>
+<h5 id="3-5-处理连续性特征：分段"><a href="#3-5-处理连续性特征：分段" class="headerlink" title="3.5 处理连续性特征：分段"></a>3.5 处理连续性特征：分段</h5><p><strong>API：</strong></p>
+<p>链接：<a href="https://scikit-learn.org/stable/modules/generated/sklearn.preprocessing.KBinsDiscretizer.html#sklearn.preprocessing.KBinsDiscretizer" target="_blank" rel="noopener">KBinsDiscretizer</a></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99izxduc5j215z0k37fa.jpg" alt="1.png"></p>
+<p><strong>演示：</strong></p>
+<p><img src="http://ww1.sinaimg.cn/large/e52819ealy1g99iykx3fej20qp0ixt96.jpg" alt="1.png"></p>
+<h4 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h4><p><a href="https://study.163.com/course/introduction/1006536008.htm" target="_blank" rel="noopener">菜菜的机器学习</a></p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/数据预处理/" rel="tag"># 数据预处理</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/11/22/docker_based_use/" rel="next" title="docker 和 nvidia-docker 的离线安装和基本使用">
+                <i class="fa fa-chevron-left"></i> docker 和 nvidia-docker 的离线安装和基本使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/12/01/LinearRegression/" rel="prev" title="简单实现线性回归">
+                简单实现线性回归 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope="" itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/header.jpg" alt="Macro">
+            
+              <p class="site-author-name" itemprop="name">Macro</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">271</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">221</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#数据挖掘流程"><span class="nav-number">1.</span> <span class="nav-text">数据挖掘流程</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-获取数据"><span class="nav-number">1.1.</span> <span class="nav-text">1. 获取数据</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-数据预处理"><span class="nav-number">1.2.</span> <span class="nav-text">2. 数据预处理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-特征工程"><span class="nav-number">1.3.</span> <span class="nav-text">3. 特征工程</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#4-建模，测试模型并预测结果"><span class="nav-number">1.4.</span> <span class="nav-text">4. 建模，测试模型并预测结果</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#5-上线，验证模型效果"><span class="nav-number">1.5.</span> <span class="nav-text">5. 上线，验证模型效果</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#sklearn-中的相关模块"><span class="nav-number">2.</span> <span class="nav-text">sklearn 中的相关模块</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据预处理"><span class="nav-number">3.</span> <span class="nav-text">数据预处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-数据无量纲化"><span class="nav-number">4.</span> <span class="nav-text">1. 数据无量纲化</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-缺失值处理"><span class="nav-number">5.</span> <span class="nav-text">2. 缺失值处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-处理分类型特征：编码和哑变量"><span class="nav-number">6.</span> <span class="nav-text">3. 处理分类型特征：编码和哑变量</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#3-1-处理标签"><span class="nav-number">6.1.</span> <span class="nav-text">3.1 处理标签</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-2-处理分类型特征，非独热编码"><span class="nav-number">6.2.</span> <span class="nav-text">3.2 处理分类型特征，非独热编码</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-3-分类型特征独热编码，创建哑变量"><span class="nav-number">6.3.</span> <span class="nav-text">3.3 分类型特征独热编码，创建哑变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-4-处理连续性特征：二值化"><span class="nav-number">6.4.</span> <span class="nav-text">3.4 处理连续性特征：二值化</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#3-5-处理连续性特征：分段"><span class="nav-number">6.5.</span> <span class="nav-text">3.5 处理连续性特征：分段</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考资料"><span class="nav-number">7.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Macro</span>
+
+  
+</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+</body>
+</html>
